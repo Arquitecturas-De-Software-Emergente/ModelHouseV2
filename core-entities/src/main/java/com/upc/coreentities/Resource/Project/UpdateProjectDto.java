@@ -1,0 +1,14 @@
+package com.upc.coreentities.Resource.Project;
+
+import lombok.*;
+
+@Getter
+@Setter
+@With
+@NoArgsConstructor
+@AllArgsConstructor
+public class UpdateProjectDto {
+    private String title;
+    private String description;
+    private String image;
+}
