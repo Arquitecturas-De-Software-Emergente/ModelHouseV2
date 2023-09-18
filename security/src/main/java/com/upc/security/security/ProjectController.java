@@ -4,7 +4,7 @@ import com.upc.coreentities.Resource.Project.CreateProjectDto;
 import com.upc.coreentities.Resource.Project.ProjectDto;
 import com.upc.coreentities.Resource.Project.UpdateProjectDto;
 import com.upc.coreservice.Mapping.ProjectMapper;
-import com.upc.coreservice.Service.Intefaces.ProjectService;
+import com.upc.coreservice.Service.Interfaces.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

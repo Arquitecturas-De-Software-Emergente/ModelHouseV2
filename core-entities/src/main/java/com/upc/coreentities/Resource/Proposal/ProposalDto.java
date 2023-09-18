@@ -3,7 +3,6 @@ package com.upc.coreentities.Resource.Proposal;
 import com.upc.coreentities.Resource.Request.RequestDto;
 import lombok.*;
 
-import jakarta.persistence.Entity;
 import java.util.Date;
 
 @Getter

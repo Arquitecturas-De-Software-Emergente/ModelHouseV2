@@ -1,6 +1,6 @@
 package com.upc.coreentities.Security;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.Date;

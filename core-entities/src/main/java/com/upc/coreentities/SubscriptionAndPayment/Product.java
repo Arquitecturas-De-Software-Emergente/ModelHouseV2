@@ -4,8 +4,8 @@ import com.upc.coreentities.Resource.Product.ProductDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "products")
 @Getter

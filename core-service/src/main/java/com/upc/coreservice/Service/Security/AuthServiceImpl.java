@@ -5,7 +5,7 @@ import com.upc.coreentities.Resource.UserResource;
 import com.upc.coreentities.Security.User;
 import com.upc.coreservice.Mapping.UserMapper;
 import com.upc.coreservice.Repository.Security.UserRepository;
-import com.upc.coreservice.Service.Intefaces.UserService;
+import com.upc.coreservice.Service.Interfaces.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

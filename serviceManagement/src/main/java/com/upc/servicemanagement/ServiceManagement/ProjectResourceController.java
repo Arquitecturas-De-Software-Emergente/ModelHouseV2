@@ -4,7 +4,7 @@ import com.upc.coreentities.Resource.ProjectResource.CreateProjectResourceDto;
 import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
 import com.upc.coreentities.Resource.ProjectResource.UpdateProjectResourceDto;
 import com.upc.coreservice.Mapping.ProjectResourceMapper;
-import com.upc.coreservice.Service.Intefaces.ProjectResourceService;
+import com.upc.coreservice.Service.Interfaces.ProjectResourceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;

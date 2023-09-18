@@ -3,8 +3,8 @@ package com.upc.coreentities.Security;
 import com.upc.coreentities.Util.Shared.domain.model.AuditModel;
 import lombok.*;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Getter
 @Setter

@@ -5,9 +5,9 @@ import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
 import com.upc.coreservice.Repository.Security.UserProfileRepository;
 import com.upc.coreservice.Repository.Security.UserRepository;
-import com.upc.coreservice.Service.Intefaces.UserProfileService;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
+import com.upc.coreservice.Service.Interfaces.UserProfileService;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,7 @@ package com.upc.coreentities.Resource.Project;
 
 import lombok.*;
 
-import jakarta.persistence.Entity;
+import javax.persistence.Entity;
 
 @Getter
 @Setter

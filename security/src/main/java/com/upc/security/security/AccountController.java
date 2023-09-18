@@ -3,7 +3,7 @@ package com.upc.security.security;
 import com.upc.coreentities.Resource.Account.AccountDto;
 import com.upc.coreentities.Resource.Account.CreateAccountDto;
 import com.upc.coreservice.Mapping.AccountMapper;
-import com.upc.coreservice.Service.Intefaces.AccountService;
+import com.upc.coreservice.Service.Interfaces.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.upc.coreentities.Security;
 
 import com.upc.coreentities.Util.Shared.domain.model.AuditModel;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Getter

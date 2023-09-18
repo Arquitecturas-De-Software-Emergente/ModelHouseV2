@@ -4,7 +4,7 @@ import com.upc.coreentities.Resource.BusinessProfile.BusinessProfileDto;
 import com.upc.coreentities.Resource.BusinessProfile.CreateBusinessProfileDto;
 import com.upc.coreentities.Resource.BusinessProfile.UpdateBusinessProfileDto;
 import com.upc.coreservice.Mapping.BusinessProfileMapper;
-import com.upc.coreservice.Service.Intefaces.BusinessProfileService;
+import com.upc.coreservice.Service.Interfaces.BusinessProfileService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

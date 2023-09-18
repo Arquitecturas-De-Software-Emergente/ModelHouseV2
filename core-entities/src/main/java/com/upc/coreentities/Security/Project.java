@@ -3,7 +3,7 @@ package com.upc.coreentities.Security;
 import com.upc.coreentities.ServiceManagement.Proposal;
 import lombok.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Getter
 @Setter

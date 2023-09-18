@@ -3,7 +3,7 @@ package com.upc.security.security;
 import com.upc.coreentities.Resource.UserProfile.CreateUserProfileDto;
 import com.upc.coreentities.Resource.UserProfile.UserProfileDto;
 import com.upc.coreservice.Mapping.UserProfileMapper;
-import com.upc.coreservice.Service.Intefaces.UserProfileService;
+import com.upc.coreservice.Service.Interfaces.UserProfileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.security.access.prepost.PreAuthorize;

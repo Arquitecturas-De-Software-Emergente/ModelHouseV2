@@ -4,7 +4,7 @@ import com.upc.coreentities.Resource.Request.ChangeStatusRequestDto;
 import com.upc.coreentities.Resource.Request.CreateRequestDto;
 import com.upc.coreentities.Resource.Request.RequestDto;
 import com.upc.coreservice.Mapping.RequestMapper;
-import com.upc.coreservice.Service.Intefaces.RequestService;
+import com.upc.coreservice.Service.Interfaces.RequestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;

@@ -2,7 +2,7 @@ package com.upc.coreentities.Security;
 
 import lombok.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter

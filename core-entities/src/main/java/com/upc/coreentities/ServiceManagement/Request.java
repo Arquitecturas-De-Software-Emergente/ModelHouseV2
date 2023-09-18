@@ -4,7 +4,7 @@ import com.upc.coreentities.Security.BusinessProfile;
 import com.upc.coreentities.Security.UserProfile;
 import lombok.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter

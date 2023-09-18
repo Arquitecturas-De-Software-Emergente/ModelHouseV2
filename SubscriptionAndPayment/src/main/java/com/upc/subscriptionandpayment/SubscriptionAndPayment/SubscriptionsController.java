@@ -3,7 +3,7 @@ package com.upc.subscriptionandpayment.SubscriptionAndPayment;
 import com.upc.coreentities.Resource.Subscription.CreateSubscriptionDto;
 import com.upc.coreentities.Resource.Subscription.SubscriptionDto;
 import com.upc.coreservice.Mapping.SubscriptionMapper;
-import com.upc.coreservice.Service.Intefaces.SubscriptionService;
+import com.upc.coreservice.Service.Interfaces.SubscriptionService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
