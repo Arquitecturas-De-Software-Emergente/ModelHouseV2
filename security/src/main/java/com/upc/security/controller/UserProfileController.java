@@ -1,4 +1,4 @@
-package com.upc.security.security;
+package com.upc.security.controller;
 
 import com.upc.coreentities.Resource.UserProfile.CreateUserProfileDto;
 import com.upc.coreentities.Resource.UserProfile.UserProfileDto;
@@ -14,7 +14,7 @@ import java.util.List;
 @SecurityRequirement(name = "acme")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class UserProfileController {
     private final UserProfileService userProfileService;
     private final UserProfileMapper mapper;

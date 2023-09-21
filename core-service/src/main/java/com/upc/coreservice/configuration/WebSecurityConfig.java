@@ -61,22 +61,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .and().cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/api/v1/user/**",
-                        "/api/v1/business_profile",
-                        "/api/v1/account/{accountId}/business_profile",
-                        "/api/v1/business_profile/{id}",
-                        "/api/v1/project",
-                        "/api/v1/business_profile/{businessId}/project",
-                        "/api/v1/project/{id}/profile",
-                        "/api/v1/order/create-checkout-session",
-                        "/api/v1/product",
-                        "/api/v1/add",
-                        "/api/v1/update/{productID}",
-                        "/api/v1/addCart",
-                        "/api/v1/carts",
-                        "/api/v1/cart",
-                        "/api/v1/carts/{cartId}",
-                        "/api/v1/plans").permitAll()
+                .antMatchers("/user/**",
+                        "/business_profile",
+                        "/account/{accountId}/business_profile",
+                        "/business_profile/{id}",
+                        "/project",
+                        "/business_profile/{businessId}/project",
+                        "/project/{id}/profile",
+                        "/order/create-checkout-session",
+                        "/product",
+                        "/add",
+                        "/update/{productID}",
+                        "/addCart",
+                        "/api/hello",
+                        "/carts",
+                        "/cart",
+                        "/carts/{cartId}",
+                        "/plans").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

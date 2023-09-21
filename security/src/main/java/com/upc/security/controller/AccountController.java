@@ -1,4 +1,4 @@
-package com.upc.security.security;
+package com.upc.security.controller;
 
 import com.upc.coreentities.Resource.Account.AccountDto;
 import com.upc.coreentities.Resource.Account.CreateAccountDto;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class AccountController {
     private final AccountService accountService;
     private final AccountMapper mapper;

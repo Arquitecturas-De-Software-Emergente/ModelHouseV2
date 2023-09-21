@@ -16,7 +16,7 @@ import java.util.List;
 @SecurityRequirement(name = "acme")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class ProjectResourceController {
     private final ProjectResourceService projectResourceService;
     private final ProjectResourceMapper mapper;

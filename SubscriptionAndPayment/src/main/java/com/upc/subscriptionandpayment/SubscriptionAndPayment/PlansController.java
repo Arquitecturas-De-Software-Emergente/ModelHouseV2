@@ -16,7 +16,7 @@ import java.util.List;
 @Tag(name = "Plans")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/plans")
+@RequestMapping("plans")
 public class PlansController {
     private final PlanService planService;
     private final PlanMapper mapper;

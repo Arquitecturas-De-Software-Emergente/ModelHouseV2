@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/modelhouse?serverTimezone=UTC
+    username: root
+    password: Porta20#
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: false
+      properties:
+        hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+        hibernate.format_sql: true
+    properties:
+      hibernate:
+        naming:
+          physicalstrategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  doc:
+    swagger-ui:
+      path: /api-docs
+  api-docs:
+    enabled: true
+server:
+  servlet:
+    context-path: /subscription-payment
+  port: 8082
+STRIPE_SECRET_KEY: sk_test_51NFT1pHntTAJqB06jqyjBaEstLi2GJvtQP2jiPNcaubbGe0kext88QATgDBmfWCdNySlTnngC5Aj66yt7vM6Crhm00GY8KVEL7
+BASE_URL: http://127.0.0.1:5173/

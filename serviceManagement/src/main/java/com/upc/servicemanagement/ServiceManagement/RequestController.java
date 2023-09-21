@@ -16,7 +16,7 @@ import java.util.List;
 @SecurityRequirement(name = "acme")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class RequestController {
     private final RequestService requestService;
     private final RequestMapper mapper;

@@ -1,4 +1,4 @@
-package com.upc.security.security;
+package com.upc.security.controller;
 
 import com.upc.coreentities.Resource.Project.CreateProjectDto;
 import com.upc.coreentities.Resource.Project.ProjectDto;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class ProjectController {
     private final ProjectService projectService;
     private final ProjectMapper mapper;

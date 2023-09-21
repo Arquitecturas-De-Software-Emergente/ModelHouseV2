@@ -16,7 +16,7 @@ import java.util.List;
 @Tag(name = "Subscriptions")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class SubscriptionsController {
     private final SubscriptionService subscriptionService;
     private final SubscriptionMapper mapper;

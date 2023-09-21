@@ -20,7 +20,7 @@ import java.util.List;
 @SecurityRequirement(name = "acme")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class ProposalController {
     private final ProposalService proposalService;
     private final ProjectService projectService;

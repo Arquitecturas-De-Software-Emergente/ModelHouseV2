@@ -1,4 +1,4 @@
-package com.upc.security.security;
+package com.upc.security.controller;
 
 import com.upc.coreentities.Resource.Account.CreateAccountDto;
 import com.upc.coreentities.Resource.ResponseErrorResource;
@@ -26,7 +26,7 @@ import javax.validation.Valid;
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-@RequestMapping("/api/v1/user")
+@RequestMapping("user")
 public class UserController {
 
     private final UserService authService;

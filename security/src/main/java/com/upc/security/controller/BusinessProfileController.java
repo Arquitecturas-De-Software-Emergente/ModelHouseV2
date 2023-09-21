@@ -1,4 +1,4 @@
-package com.upc.security.security;
+package com.upc.security.controller;
 
 import com.upc.coreentities.Resource.BusinessProfile.BusinessProfileDto;
 import com.upc.coreentities.Resource.BusinessProfile.CreateBusinessProfileDto;
@@ -14,7 +14,7 @@ import java.util.List;
 //@SecurityRequirement(name = "acme")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("")
 public class BusinessProfileController {
     private final BusinessProfileService businessProfileService;
     private final BusinessProfileMapper mapper;
