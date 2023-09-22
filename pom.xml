@@ -42,11 +42,6 @@
                 <version>0.8.8</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                    <execution>
                         <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>

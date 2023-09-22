@@ -1,0 +1,12 @@
+
+„
+java:S1192$"iDefine a constant instead of duplicating this literal "Not all constraints satisfied for %s: %s" 3 times.(¬¸¬Ÿıÿÿÿÿ
+~
+java:S1319"cThe type of "errors" should be an interface such as "Map" rather than the implementation "HashMap".(ÈîØøÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æ€”Ş
+:
+java:S1165"Make this "errors" field final.(´Î—„øÿÿÿÿ
+;
+java:S1165" Make this "message" field final.(ù„è¿ûÿÿÿÿ
+E
+java:S1172."*Remove this unused method parameter "id1".(Ù¬Úùÿÿÿÿ
