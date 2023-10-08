@@ -1,6 +1,7 @@
 package com.upc.coreentities.Resource.UserProfile;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,7 +15,7 @@ public class CreateUserProfileDto {
     @NotNull
     @NotBlank
     private String firstName;
-    private String image;
+    private MultipartFile image;
     @NotNull
     @NotBlank
     private String lastName;

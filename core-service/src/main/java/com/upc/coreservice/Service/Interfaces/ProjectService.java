@@ -1,6 +1,7 @@
 package com.upc.coreservice.Service.Interfaces;
 
 import com.upc.coreentities.Security.Project;
+import com.upc.coreentities.Security.UserProfile;
 import com.upc.coreentities.ServiceManagement.Proposal;
 import org.springframework.http.ResponseEntity;
 
@@ -17,4 +18,5 @@ public interface ProjectService {
     Project updateProject(Long id, Project project);
     ResponseEntity<?> deleteProject(Long id);
 
+    Project update(Long id, Project project);
 }

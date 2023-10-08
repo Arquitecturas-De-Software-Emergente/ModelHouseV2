@@ -24,6 +24,11 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     private static final String ENTITY = "Request";
 
     @Override
+    public ProjectResource findById(Long id) {
+        return projectResourceRepository.getById(id);
+    }
+
+    @Override
     public List<ProjectResource> findAllProposalId(Long id) {
         return projectResourceRepository.findAllByProjectId(id);
     }

@@ -3,15 +3,27 @@ package com.upc.servicemanagement.ServiceManagement;
 import com.upc.coreentities.Resource.ProjectResource.CreateProjectResourceDto;
 import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
 import com.upc.coreentities.Resource.ProjectResource.UpdateProjectResourceDto;
+import com.upc.coreentities.ServiceManagement.ProjectActivity;
+import com.upc.coreentities.ServiceManagement.ProjectResource;
+import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreservice.Mapping.ProjectResourceMapper;
 import com.upc.coreservice.Service.Interfaces.ProjectResourceService;
+import com.upc.coreservice.Service.Interfaces.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @SecurityRequirement(name = "acme")
 @RestController
@@ -21,10 +33,17 @@ public class ProjectResourceController {
     private final ProjectResourceService projectResourceService;
     private final ProjectResourceMapper mapper;
 
-    public ProjectResourceController(ProjectResourceService projectResourceService, ProjectResourceMapper mapper) {
+    private final StorageService storageService;
+    private final HttpServletRequest request;
+
+    public ProjectResourceController(ProjectResourceService projectResourceService, ProjectResourceMapper mapper, StorageService storageService, HttpServletRequest request) throws IOException {
         this.projectResourceService = projectResourceService;
         this.mapper = mapper;
+        this.storageService = storageService;
+        this.request = request;
+        this.storageService.init("/ProjectResource");
     }
+    private String uploadDir = "/Images/Resource";
     @GetMapping("/proposal/{proposalId}/project_resource")
     @Operation(tags = {"project-resource"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -41,8 +60,41 @@ public class ProjectResourceController {
     @PutMapping("/project_resource/{id}")
     @Operation(tags = {"project-resource"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProjectResourceDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectResourceDto updateProjectResourceDto){
-        return mapper.toResource(projectResourceService.update(id, mapper.toModel(updateProjectResourceDto)));
+    public ProjectResourceDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectResourceDto resource){
+        try{
+            String fileName = UUID.randomUUID().toString() + "-" + resource.getImage().getOriginalFilename();
+            Path filePath = Paths.get(uploadDir, fileName);
+
+            resource.getImage().transferTo(filePath);
+            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path(uploadDir)
+                    .path(fileName)
+                    .toUriString();
+            ProjectResource projectResource = mapper.toModel(resource);
+            projectResource.setImage(fileDownloadUri);
+            return mapper.toResource(projectResourceService.update(id, mapper.toModel(resource)));
+        }catch (Exception e){
+            throw new ResourceNotFoundException("An error occurred while loading the image");
+        }
+    }
+    @PostMapping("/project_activity/upload/{id}")
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"BusinessProfile"})
+    public Map<String, String> upload(@RequestParam("file") MultipartFile multipartFile, @PathVariable("id") Long id){
+        ProjectResource projectResource = projectResourceService.findById(id);
+        if(projectResource == null){
+            throw new RuntimeException("Project Activity is null");
+        }
+        String path = storageService.store(multipartFile);
+        String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
+        String url = ServletUriComponentsBuilder
+                .fromHttpUrl(host)
+                .path("/servicemanagement/media/")
+                .path(path)
+                .toUriString();
+        projectResource.setImage(url);
+        projectResourceService.update(id, projectResource);
+        return Map.of("Url", url);
     }
     @DeleteMapping("/project_resource/{id}")
     @Operation(tags = {"project-resource"})

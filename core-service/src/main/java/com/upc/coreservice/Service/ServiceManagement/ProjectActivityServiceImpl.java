@@ -24,6 +24,11 @@ public class ProjectActivityServiceImpl implements ProjectActivityService {
     private static final String ENTITY = "ProjectActivity";
 
     @Override
+    public ProjectActivity findById(Long id) {
+        return projectActivityRepository.getById(id);
+    }
+
+    @Override
     public List<ProjectActivity> findAllProposalId(Long id) {
         return projectActivityRepository.findAllByProjectId(id);
     }

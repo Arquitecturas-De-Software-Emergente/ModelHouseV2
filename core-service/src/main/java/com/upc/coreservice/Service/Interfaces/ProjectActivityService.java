@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ProjectActivityService {
+    ProjectActivity findById(Long id);
     List<ProjectActivity> findAllProposalId(Long id);
     ProjectActivity create(Long proposalId, ProjectActivity projectActivity);
     ResponseEntity<?> delete(Long id);

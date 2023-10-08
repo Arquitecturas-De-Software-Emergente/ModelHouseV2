@@ -1,6 +1,7 @@
 package com.upc.coreservice.Service.Security;
 
 import com.upc.coreentities.Security.Project;
+import com.upc.coreentities.Security.UserProfile;
 import com.upc.coreentities.ServiceManagement.Proposal;
 import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
@@ -13,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -82,5 +84,15 @@ public class ProjectServiceImpl implements ProjectService {
              return ResponseEntity.ok().build();
          }).orElseThrow(()->new ResourceNotFoundException(ENTITY, id));
 
+    }
+
+    @Override
+    public Project update(Long id, Project project) {
+        Set<ConstraintViolation<Project>> violations = validator.validate(project);
+        if(!violations.isEmpty())
+            throw new ResourceValidationException(ENTITY, violations);
+        return projectRepository.findById(id).map(project1 ->
+                        projectRepository.save(project1.withImage(project1.getImage())))
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
 }

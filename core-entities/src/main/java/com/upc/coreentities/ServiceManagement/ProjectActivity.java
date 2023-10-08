@@ -17,6 +17,7 @@ public class ProjectActivity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String image;
     private String description;
     private String status;
     private Date startedAt;

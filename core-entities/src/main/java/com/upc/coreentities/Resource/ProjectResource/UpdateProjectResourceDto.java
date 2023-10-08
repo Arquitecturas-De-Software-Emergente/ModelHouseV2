@@ -1,6 +1,7 @@
 package com.upc.coreentities.Resource.ProjectResource;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -10,5 +11,6 @@ import lombok.*;
 public class UpdateProjectResourceDto {
     private String description;
     private Number quantity;
+    private MultipartFile image;
     private String state;
 }

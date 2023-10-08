@@ -1,6 +1,7 @@
 package com.upc.coreentities.Resource.BusinessProfile;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,9 +20,9 @@ public class CreateBusinessProfileDto {
     @NotBlank
     @Size(max = 1000)
     private String description;
-    private String image;
     private String address;
     private String webSite;
+    private MultipartFile image;
     @NotNull
     @NotBlank
     private String phoneBusiness;
