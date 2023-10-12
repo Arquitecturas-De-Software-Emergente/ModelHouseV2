@@ -29,7 +29,7 @@ public class AccountController {
     private final AccountMapper mapper;
     @Autowired
     private JwtUtil jwtUtil;
-
+    @Autowired
     private AuthenticationManager manager;
     @Autowired
     private AccountRepository accountRepository;
