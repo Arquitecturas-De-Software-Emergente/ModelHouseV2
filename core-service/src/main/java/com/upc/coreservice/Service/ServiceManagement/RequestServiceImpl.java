@@ -59,11 +59,12 @@ public class RequestServiceImpl implements RequestService {
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
+
         return businessProfileRepository.findById(businessId).map(businessProfile -> {
             UserProfile userProfile = userProfileRepository.findUserProfileById(userId);
             if(userProfile == null)
                 throw new ResourceNotFoundException("The client does not exist");
-            if(businessProfile.getAccount().getUserProfile().getId().equals(userProfile.getId()))
+            if(businessProfile.getAccount().getId().equals(userProfile.getId()))
                 throw new ResourceNotFoundException("The company cannot make a request to it");
             request.setUserProfile(userProfile);
             return requestRepository.save(request);

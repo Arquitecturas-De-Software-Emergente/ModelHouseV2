@@ -1,7 +1,6 @@
-/*
+
 package com.upc.security.controller;
- */
-/*
+
 
 import com.upc.coreentities.Resource.Project.CreateProjectDto;
 import com.upc.coreentities.Resource.Project.ProjectDto;
@@ -54,6 +53,7 @@ public class ProjectController {
     public ProjectDto getById(@PathVariable("id") Long id){
         return mapper.toResource(projectService.findById(id));
     }
+    /*
     @PostMapping("/business_profile/{businessId}/project")
     @Operation(tags = {"Project"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -66,13 +66,15 @@ public class ProjectController {
     public ProjectDto updateProject(@PathVariable("id") Long id, @RequestBody UpdateProjectDto updateBusinessProfileDto){
         return mapper.toResource(projectService.updateProject(id, mapper.toModel(updateBusinessProfileDto)));
     }
+
+     */
     @DeleteMapping("/project/{id}")
     @Operation(tags = {"Project"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public ResponseEntity<?> deleteProject(@PathVariable("id") Long id){
         return  projectService.deleteProject(id);
     }
-
+/*
     @PostMapping("/project/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     @Operation(tags = {"Project"})
@@ -92,5 +94,6 @@ public class ProjectController {
         projectService.update(id, project);
         return Map.of("Url", url);
     }
+
+ */
 }
-*/

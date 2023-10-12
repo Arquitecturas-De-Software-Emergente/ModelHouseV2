@@ -1,5 +1,7 @@
 package com.upc.coreentities.ServiceManagement;
 
+import com.upc.coreentities.Resource.BusinessProfile.BusinessProfileDto;
+import com.upc.coreentities.Resource.UserProfile.UserProfileDto;
 import com.upc.coreentities.Security.BusinessProfile;
 import com.upc.coreentities.Security.UserProfile;
 import lombok.*;
@@ -26,6 +28,12 @@ public class Request {
     private boolean isResponse;
     @Column(name = "response_date")
     private Date responseDate;
+    private String category;
+    private String estimatedBudget;
+    private int area;
+    private String location;
+    private String file;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_profile_id", nullable = false)
@@ -33,6 +41,7 @@ public class Request {
 
     @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
     private Proposal proposal;
+
 
 
     /*
