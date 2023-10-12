@@ -51,7 +51,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         subscription.setActivatedAt(new Date());
         return accountRepository.findById(accountId).map(account -> {
             subscription.setAccount(account);
-            subscription.getAccount().getUser().setRole("business");
+            subscription.getAccount().getBusinessProfile();
             subscription.setActivated(true);
             Plan plan = planRepository.findPlanById(planId);
             if(plan == null)

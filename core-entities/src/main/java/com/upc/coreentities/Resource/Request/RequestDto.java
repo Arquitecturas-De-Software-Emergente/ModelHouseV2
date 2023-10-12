@@ -13,6 +13,18 @@ import java.util.Date;
 @AllArgsConstructor
 public class RequestDto {
     private Long id;
+    private String category;
+    private String estimatedBudget;
+    private int area;
+    private String location;
+    private String file;
+    private String description;
+    private String status;
+    private UserProfileDto userProfile;
+    private BusinessProfileDto businessProfile;
+
+    /*
+    private Long id;
     private Date requestAt;
     private String status;
     private String description;
@@ -21,4 +33,6 @@ public class RequestDto {
     private Date updateAt;
     private UserProfileDto userProfile;
     private BusinessProfileDto businessProfile;
+
+     */
 }

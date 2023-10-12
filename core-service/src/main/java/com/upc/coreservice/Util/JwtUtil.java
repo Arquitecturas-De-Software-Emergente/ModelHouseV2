@@ -1,6 +1,6 @@
 package com.upc.coreservice.Util;
 
-import com.upc.coreentities.Security.UserDetailsImpl;
+import com.upc.coreentities.Security.AccountDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class JwtUtil {
 
     public String generateJwtToken(Authentication authentication) {
 
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+        AccountDetailsImpl userPrincipal = (AccountDetailsImpl) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setSubject((String.valueOf(userPrincipal.getId())))

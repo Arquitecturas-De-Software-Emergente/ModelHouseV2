@@ -52,7 +52,7 @@ public class ProposalController {
         Project resource = new Project();
         Proposal proposal = proposalService.create(requestId, mapper.toModel(createProposalDto));
         if(proposal != null){
-            Project project = projectService.createProject(proposal.getRequest().getBusinessProfile().getId(), resource, proposal);
+            Project project = projectService.createProject(proposal.getRequest().getUserProfile().getId(), resource, proposal);
             if(project != null){
                 return mapper.toResource(proposal);
             }

@@ -31,6 +31,8 @@ public class RequestController {
     public List<RequestDto> getAll(){
         return mapper.listToResource(requestService.getAll());
     }
+
+    /*
     @GetMapping("/business/{businessId}/status/{status}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -45,6 +47,7 @@ public class RequestController {
                                            @PathVariable("status") String status){
         return mapper.listToResource(requestService.findAllUserProfileIdAndStatus(id,status));
     }
+    */
     @PostMapping("/user/{userId}/business/{businessId}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -53,12 +56,17 @@ public class RequestController {
                                     @RequestBody CreateRequestDto createRequestDto){
         return mapper.toResource(requestService.create(userId, businessId, mapper.toModel(createRequestDto)));
     }
+
+    /*
     @PutMapping("/request/{id}")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public RequestDto updateRequest(@PathVariable("id") Long id, @RequestBody ChangeStatusRequestDto changeStatusRequestDto){
         return mapper.toResource(requestService.changeStatus(id, mapper.toModel(changeStatusRequestDto)));
     }
+
+     */
+
     @DeleteMapping("/request/{id}")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

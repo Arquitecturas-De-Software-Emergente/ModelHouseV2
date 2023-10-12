@@ -1,4 +1,6 @@
+/*
 package com.upc.coreentities.Security;
+
 
 import com.upc.coreentities.Util.Shared.domain.model.AuditModel;
 import lombok.*;
@@ -30,3 +32,5 @@ public class User extends AuditModel {
     private UserProfile userProfile;
 
 }
+
+ */

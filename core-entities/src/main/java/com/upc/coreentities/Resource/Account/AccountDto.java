@@ -1,3 +1,4 @@
+/*
 package com.upc.coreentities.Resource.Account;
 
 import lombok.*;
@@ -11,3 +12,4 @@ public class AccountDto {
     private Long id;
     private Boolean isActive;
 }
+*/

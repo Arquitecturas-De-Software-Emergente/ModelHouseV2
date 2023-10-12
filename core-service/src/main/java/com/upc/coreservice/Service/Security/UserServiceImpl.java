@@ -1,8 +1,9 @@
+/*
 package com.upc.coreservice.Service.Security;
 
-import com.upc.coreentities.Security.User;
-import com.upc.coreentities.Security.UserDetailsImpl;
-import com.upc.coreservice.Repository.Security.UserRepository;
+
+import com.upc.coreentities.Security.AccountDetailsImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,11 +23,14 @@ public class UserServiceImpl implements UserDetailsService {
         {
             return null;
         }
-        return UserDetailsImpl.build(user);
+        return AccountDetailsImpl.build(user);
     }
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmailAddress(email);
-        return UserDetailsImpl.build(user);
+        return AccountDetailsImpl.build(user);
     }
 }
+
+
+ */

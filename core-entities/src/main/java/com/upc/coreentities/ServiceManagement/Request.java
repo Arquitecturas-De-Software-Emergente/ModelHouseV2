@@ -17,6 +17,28 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "request_date")
+    private Date requestDate;
+    @Column(name = "request_status")
+    private String requestStatus;
+    private String description;
+    @Column(name = "is_response")
+    private boolean isResponse;
+    @Column(name = "response_date")
+    private Date responseDate;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_profile_id", nullable = false)
+    private UserProfile userProfile;
+
+    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
+    private Proposal proposal;
+
+
+    /*
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Date requestAt;
     private String status;
     private String description;
@@ -33,4 +55,6 @@ public class Request {
 
     @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
     private Proposal proposal;
+
+     */
 }

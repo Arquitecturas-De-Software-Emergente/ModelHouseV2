@@ -15,4 +15,5 @@ public class ProjectDto {
     private String description;
     private String image;
     private Long businessProfileId;
+
 }

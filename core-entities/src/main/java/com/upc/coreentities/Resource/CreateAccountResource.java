@@ -11,7 +11,9 @@ import javax.validation.constraints.NotNull;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserResource {
+public class CreateAccountResource {
+    @NotBlank
+    private String name;
     @NotBlank
     @NotNull
     @Email

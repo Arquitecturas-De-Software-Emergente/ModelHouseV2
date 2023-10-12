@@ -1,11 +1,11 @@
 package com.upc.coreservice.Service.Security;
 
-import com.upc.coreentities.Resource.UserCredentialsResource;
-import com.upc.coreentities.Resource.UserResource;
-import com.upc.coreentities.Security.User;
-import com.upc.coreservice.Mapping.UserMapper;
-import com.upc.coreservice.Repository.Security.UserRepository;
-import com.upc.coreservice.Service.Interfaces.UserService;
+import com.upc.coreentities.Resource.AccountCredentialsResource;
+import com.upc.coreentities.Resource.AccountResource;
+import com.upc.coreentities.Security.Account;
+import com.upc.coreservice.Mapping.AccountMapper;
+import com.upc.coreservice.Repository.Security.AccountRepository;
+import com.upc.coreservice.Service.Interfaces.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AuthServiceImpl implements UserService {
+public class AuthServiceImpl implements AccountService {
     @Autowired
-    UserRepository userRepository;
+    AccountRepository accountRepository;
     @Autowired
     private PasswordEncoder encoder;
-    private UserMapper mapper;
+    private AccountMapper mapper;
 
-    public UserResource login(UserCredentialsResource credentials) {
-        User account = userRepository.findByEmailAddress(credentials.getEmailAddress());
+    public AccountResource login(AccountCredentialsResource credentials) {
+        Account account = accountRepository.findByEmailAddress(credentials.getEmailAddress());
         if (account == null)
             throw new IllegalArgumentException("User not found");
         if (!encoder.matches(credentials.getPassword(), account.getPassword()))
@@ -31,13 +31,13 @@ public class AuthServiceImpl implements UserService {
     }
 
     @Override
-    public User register(UserCredentialsResource credentialsResource) {
-        User registeredAccount = new User();
+    public Account register(AccountCredentialsResource credentialsResource) {
+        Account registeredAccount = new Account();
         registeredAccount.setEmailAddress(credentialsResource.getEmailAddress());
         registeredAccount.setPassword(encoder.encode(credentialsResource.getPassword()));
         registeredAccount.setIsActive(true);
-        registeredAccount.setRole("user");
-        registeredAccount = userRepository.save(registeredAccount);
+       // registeredAccount.setRole("user");
+        registeredAccount = accountRepository.save(registeredAccount);
 
         return registeredAccount;
     }

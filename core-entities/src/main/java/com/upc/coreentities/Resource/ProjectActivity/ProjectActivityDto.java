@@ -12,8 +12,9 @@ import java.util.Date;
 public class ProjectActivityDto {
     private Long id;
     private String status;
-    private String name;
+    //private String name;
     private String description;
+    private String image;
     private Date startedAt;
     private Date completedAt;
     private ProposalDto proposal;

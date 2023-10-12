@@ -1,5 +1,7 @@
 package com.upc.coreentities.Resource.Proposal;
 
+import com.upc.coreentities.Resource.ProjectActivity.CreateProjectActivityDto;
+import com.upc.coreentities.Resource.ProjectResource.CreateProjectResourceDto;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -10,6 +12,19 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateProposalDto {
+    @NotNull
+    @NotBlank
+    private String title;
+    @NotNull
+    @NotBlank
+    private String description;
+    @NotNull
+    @NotBlank
+    private String file;
+    private CreateProjectActivityDto projectActivity;
+    private CreateProjectResourceDto projectResource;
+
+    /*
     @NotBlank
     @NotNull
     private String description;
@@ -17,4 +32,6 @@ public class CreateProposalDto {
     private Float price;
     private String status;
     private Boolean isResponse;
+
+     */
 }

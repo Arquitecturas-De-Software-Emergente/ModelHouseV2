@@ -12,10 +12,19 @@ import java.util.Date;
 @AllArgsConstructor
 public class CreateProjectActivityDto {
     private String status;
+    private String image;
+    @NotNull
+    @NotBlank
+    private String description;
+
+    /*
+    private String status;
     @NotNull
     @NotBlank
     private String name;
     @NotNull
     @NotBlank
     private String description;
+
+     */
 }

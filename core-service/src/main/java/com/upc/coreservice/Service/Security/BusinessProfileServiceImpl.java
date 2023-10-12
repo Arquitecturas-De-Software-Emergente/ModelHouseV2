@@ -61,9 +61,7 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
                                 .withDescription(businessProfile.getDescription())
                                 .withImage(businessProfile.getImage())
                                 .withAddress(businessProfile.getAddress())
-                                .withWebSite(businessProfile.getWebSite())
-                                .withRegistrationDate(new Date())
-                                .withPhoneBusiness(businessProfile.getPhoneBusiness())))
+                                .withWebSite(businessProfile.getWebSite())))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
 }

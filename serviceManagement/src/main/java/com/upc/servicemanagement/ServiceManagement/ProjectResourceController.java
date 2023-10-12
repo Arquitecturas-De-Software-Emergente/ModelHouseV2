@@ -77,9 +77,10 @@ public class ProjectResourceController {
             throw new ResourceNotFoundException("An error occurred while loading the image");
         }
     }
+    /*
     @PostMapping("/project_activity/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    @Operation(tags = {"BusinessProfile"})
+    @Operation(tags = {"project-resource"})
     public Map<String, String> upload(@RequestParam("file") MultipartFile multipartFile, @PathVariable("id") Long id){
         ProjectResource projectResource = projectResourceService.findById(id);
         if(projectResource == null){
@@ -96,6 +97,8 @@ public class ProjectResourceController {
         projectResourceService.update(id, projectResource);
         return Map.of("Url", url);
     }
+
+     */
     @DeleteMapping("/project_resource/{id}")
     @Operation(tags = {"project-resource"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

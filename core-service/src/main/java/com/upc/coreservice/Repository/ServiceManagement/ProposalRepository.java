@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface ProposalRepository extends JpaRepository<Proposal, Long> {
     Proposal findProposalById(Long id);
+    Proposal findALlByProposalStatus(String status);
     List<Proposal> findAll();
     Proposal findByRequestId(Long id);
 }

@@ -1,5 +1,6 @@
 package com.upc.coreentities.ServiceManagement;
 
+import com.upc.coreentities.Security.BusinessProfile;
 import com.upc.coreentities.Security.Project;
 import lombok.*;
 
@@ -13,6 +14,33 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 public class Proposal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "proposal_date")
+    private Date proposalDate;
+    @Column(name = "proposal_status")
+    private String proposalStatus;
+    private String title;
+    private String description;
+    private Float price;
+    @Column(name = "estimated_time")
+    private Date estimatedTime;
+    @Column(name = "is_response")
+    private Boolean isResponse;
+    @Column(name = "response_date")
+    private Date responseDate;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "businessprofile_id", nullable = false)
+    private BusinessProfile businessProfile;
+
+    @OneToOne
+    @JoinColumn(name = "request_id")
+    private Request request;
+
+
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,4 +60,6 @@ public class Proposal {
 
     @OneToOne(mappedBy = "proposal", cascade = CascadeType.ALL)
     private Project project;
+
+     */
 }

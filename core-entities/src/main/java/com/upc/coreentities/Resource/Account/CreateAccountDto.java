@@ -1,3 +1,4 @@
+/*
 package com.upc.coreentities.Resource.Account;
 
 import javax.validation.constraints.NotBlank;
@@ -14,3 +15,4 @@ public class CreateAccountDto {
     @NotBlank
     private Boolean isActive;
 }
+*/

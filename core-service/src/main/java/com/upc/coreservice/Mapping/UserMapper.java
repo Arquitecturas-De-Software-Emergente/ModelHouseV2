@@ -1,8 +1,8 @@
+/*
 package com.upc.coreservice.Mapping;
 
-import com.upc.coreentities.Resource.CreateUserResource;
-import com.upc.coreentities.Resource.UserResource;
-import com.upc.coreentities.Security.User;
+import com.upc.coreentities.Resource.CreateAccountResource;
+
 import com.upc.coreentities.Util.Shared.mapping.EnhancedModelMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class UserMapper implements Serializable {
         return new PageImpl<>(modelMapper.mapList(modelList, UserResource.class), pageable, modelList.size());
     }
 
-    public User toModel(CreateUserResource resource) {
+    public User toModel(CreateAccountResource resource) {
         return modelMapper.map(resource, User.class);
     }
 
@@ -40,4 +40,4 @@ public class UserMapper implements Serializable {
     }
 
 }
-
+*/

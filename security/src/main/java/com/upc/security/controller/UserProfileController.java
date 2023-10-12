@@ -98,7 +98,7 @@ public class UserProfileController {
     }
     @PostMapping("/user_profile/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    @Operation(tags = {"BusinessProfile"})
+    @Operation(tags = {"UserProfile"})
     public Map<String, String> upload(@RequestParam("file") MultipartFile multipartFile, @PathVariable("id") Long id){
         UserProfile userProfile = userProfileService.findByUserId(id);
         String url;

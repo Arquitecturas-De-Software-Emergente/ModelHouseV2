@@ -1,6 +1,6 @@
 package com.upc.coreservice.configuration;
 
-import com.upc.coreservice.Service.Security.UserServiceImpl;
+import com.upc.coreservice.Service.Security.AccountServiceImpl;
 import com.upc.coreservice.Util.AuthError;
 import com.upc.coreservice.Util.AuthTokenHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +22,14 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserServiceImpl userDetailsService;
+    private final AccountServiceImpl userDetailsService;
     private final AuthError unauthorizedHandler;
 
     @Autowired
     private DataSource dataSource;
 
     @Autowired
-    public WebSecurityConfig(UserServiceImpl userDetailsService, AuthError unauthorizedHandler){
+    public WebSecurityConfig(AccountServiceImpl userDetailsService, AuthError unauthorizedHandler){
         this.userDetailsService = userDetailsService;
         this.unauthorizedHandler = unauthorizedHandler;
     }

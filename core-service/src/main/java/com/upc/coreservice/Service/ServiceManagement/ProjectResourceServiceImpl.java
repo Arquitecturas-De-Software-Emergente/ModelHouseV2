@@ -59,7 +59,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
         return projectResourceRepository.findById(id).map(project ->
-                        projectResourceRepository.save(project.withDescription(projectResource.getDescription())
+                        projectResourceRepository.save(project
                                 .withQuantity(projectResource.getQuantity())
                                 .withState(projectResource.getState())))
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY , id));

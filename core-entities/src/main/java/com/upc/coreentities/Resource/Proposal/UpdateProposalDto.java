@@ -11,7 +11,7 @@ import java.util.Date;
 public class UpdateProposalDto {
     private Date proposalDate;
     private String description;
-    private Float price;
+ //   private Float price;
     private String status;
     private Boolean isResponse;
     private Date responseDate;

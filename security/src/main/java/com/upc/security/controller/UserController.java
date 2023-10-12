@@ -1,14 +1,15 @@
+/*
 package com.upc.security.controller;
 
-import com.upc.coreentities.Resource.Account.CreateAccountDto;
+
+
 import com.upc.coreentities.Resource.ResponseErrorResource;
-import com.upc.coreentities.Resource.UserCredentialsResource;
-import com.upc.coreentities.Resource.UserResource;
-import com.upc.coreentities.Security.User;
+import com.upc.coreentities.Resource.AccountCredentialsResource;
+
 import com.upc.coreservice.Mapping.AccountMapper;
-import com.upc.coreservice.Repository.Security.UserRepository;
+
 import com.upc.coreservice.Service.Interfaces.AccountService;
-import com.upc.coreservice.Service.Interfaces.UserService;
+
 import com.upc.coreservice.Util.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -43,7 +44,7 @@ public class UserController {
 
     @PostMapping("/login")
     @Operation(summary = "Login", tags = {"User"})
-    public ResponseEntity<?> login(@Valid @RequestBody UserCredentialsResource user) {
+    public ResponseEntity<?> login(@Valid @RequestBody AccountCredentialsResource user) {
         ResponseErrorResource errorResource = new ResponseErrorResource();
         errorResource.setMessage(statusBody);
         UserResource response = authService.login(user);
@@ -59,7 +60,7 @@ public class UserController {
 
     @PostMapping("/register")
     @Operation(summary = "Register", tags = {"User"})
-    public ResponseEntity<?> register(@Valid @RequestBody UserCredentialsResource credentials) {
+    public ResponseEntity<?> register(@Valid @RequestBody AccountCredentialsResource credentials) {
 
         ResponseErrorResource errorResource = new ResponseErrorResource();
         errorResource.setMessage(statusBody);
@@ -77,3 +78,5 @@ public class UserController {
         return ResponseEntity.ok("Registration failed, please try again");
     }
 }
+
+ */

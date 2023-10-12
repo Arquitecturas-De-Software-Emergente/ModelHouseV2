@@ -1,4 +1,3 @@
-/*
 package com.upc.coreentities.Resource;
 
 import lombok.*;
@@ -8,13 +7,10 @@ import lombok.*;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResource {
-
+public class AccountResource {
     private Long id;
     private String emailAddress;
     private Boolean isActive;
     private String role;
     private String token;
 }
-
- */

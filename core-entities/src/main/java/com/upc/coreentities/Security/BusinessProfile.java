@@ -12,6 +12,27 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 public class BusinessProfile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String image;
+    private String address;
+    @Column(name = "web_site")
+    private String webSite;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    private String description;
+    @Column(name = "foundation_date")
+    private String foundationDate;
+
+
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,4 +52,6 @@ public class BusinessProfile {
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
+
+     */
 }

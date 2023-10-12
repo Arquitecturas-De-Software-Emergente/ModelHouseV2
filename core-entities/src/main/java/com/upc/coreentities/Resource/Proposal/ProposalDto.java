@@ -14,9 +14,9 @@ public class ProposalDto {
     private Long id;
     private Date proposalDate;
     private String description;
-    private Float price;
+   // private Float price;
     private String status;
-    private Boolean isResponse;
-    private Date responseDate;
+  //  private Boolean isResponse;
+  //  private Date responseDate;
     private RequestDto request;
 }

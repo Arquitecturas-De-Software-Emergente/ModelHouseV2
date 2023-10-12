@@ -55,7 +55,7 @@ public class ProjectActivityController {
     }
     @PostMapping("/project_activity/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    @Operation(tags = {"BusinessProfile"})
+    @Operation(tags = {"project-activity"})
     public Map<String, String> upload(@RequestParam("file") MultipartFile multipartFile, @PathVariable("id") Long id){
         ProjectActivity projectActivity = projectActivityService.findById(id);
         if(projectActivity == null){

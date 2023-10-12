@@ -1,6 +1,6 @@
 package com.upc.coreservice.Util;
 
-import com.upc.coreservice.Service.Security.UserServiceImpl;
+import com.upc.coreservice.Service.Security.AccountServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class AuthTokenHandler extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private UserServiceImpl userDetailsService;
+    private AccountServiceImpl userDetailsService;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenHandler.class);
 

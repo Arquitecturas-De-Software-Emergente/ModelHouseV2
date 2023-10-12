@@ -10,6 +10,6 @@ import java.util.List;
 public interface RequestRepository extends JpaRepository<Request, Long> {
     Request findRequestById(Long id);
     List<Request> findAll();
-    List<Request> findAllByUserProfileIdAndStatus(Long id, String status);
-    List<Request> findAllByBusinessProfileIdAndStatus(Long id, String status);
+  //  List<Request> findAllByUserProfileIdAndStatus(Long id, String status);
+  //  List<Request> findAllByBusinessProfileIdAndStatus(Long id, String status);
 }

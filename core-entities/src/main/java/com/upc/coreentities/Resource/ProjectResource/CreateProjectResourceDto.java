@@ -10,5 +10,6 @@ import lombok.*;
 public class CreateProjectResourceDto {
     private String description;
     private Number quantity;
+    private String image;
     private String state;
 }

@@ -3,8 +3,8 @@ package com.upc.coreservice.Service.Security;
 import com.upc.coreentities.Security.UserProfile;
 import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
+import com.upc.coreservice.Repository.Security.AccountRepository;
 import com.upc.coreservice.Repository.Security.UserProfileRepository;
-import com.upc.coreservice.Repository.Security.UserRepository;
 import com.upc.coreservice.Service.Interfaces.UserProfileService;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -20,7 +20,7 @@ import java.util.Set;
 public class UserProfileServiceImpl implements UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
-    private final UserRepository userRepository;
+    private final AccountRepository userRepository;
     private final Validator validator;
     private static final String ENTITY = "UserProfile";
     @Override
@@ -30,7 +30,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public UserProfile findByUserId(Long userId) {
-        return userProfileRepository.findUserProfileByUser_Id(userId);
+        return userProfileRepository.findUserProfileById(userId);
     }
 
     @Override
@@ -38,11 +38,11 @@ public class UserProfileServiceImpl implements UserProfileService {
         Set<ConstraintViolation<UserProfile>> violations = validator.validate(userProfile);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
-        UserProfile userProfileExist = userProfileRepository.findUserProfileByUser_Id(userId);
+        UserProfile userProfileExist = userProfileRepository.findUserProfileById(userId);
         if(userProfileExist != null)
             throw new ResourceNotFoundException("User Profile is exist");
         return userRepository.findById(userId).map(user -> {
-            userProfile.setUser(user);
+            userProfile.setAccount(user);
             return userProfileRepository.save(userProfile);
         }).orElseThrow(() -> new ResourceNotFoundException("Request", userId));
 

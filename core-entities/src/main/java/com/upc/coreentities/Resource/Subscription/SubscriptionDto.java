@@ -1,7 +1,7 @@
 package com.upc.coreentities.Resource.Subscription;
 
-import com.upc.coreentities.Resource.Account.AccountDto;
 import com.upc.coreentities.Resource.Plan.PlanDto;
+import com.upc.coreentities.Security.Account;
 import lombok.*;
 
 import java.util.Date;
@@ -18,5 +18,5 @@ public class SubscriptionDto {
     private Boolean activated;
     private Boolean autoRenewal;
     private PlanDto plan;
-    private AccountDto account;
+    private Account account;
 }

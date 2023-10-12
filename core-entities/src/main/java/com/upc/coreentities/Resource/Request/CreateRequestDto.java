@@ -10,7 +10,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateRequestDto {
+    private String category;
+    private String estimatedBudget;
+    private int area;
+    private String location;
+    private String file;
+    private String description;
+    private String status;
+
+    /*
     private String status;
     private String description;
     private Boolean accepted;
+
+     */
 }

@@ -1,6 +1,6 @@
 package com.upc.coreentities.Resource.UserProfile;
 
-import com.upc.coreentities.Resource.UserResource;
+import com.upc.coreentities.Resource.AccountResource;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +20,5 @@ public class UserProfileDto {
     private String phoneNumber;
     private Date registrationDate;
     private Date lastLogin;
-    private UserResource user;
+    private AccountResource user;
 }
