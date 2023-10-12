@@ -1,5 +1,6 @@
 package com.upc.security.controller;
 
+import com.upc.coreentities.Resource.BusinessProfile.BusinessProfileDto;
 import com.upc.coreentities.Resource.UserProfile.CreateUserProfileDto;
 import com.upc.coreentities.Resource.UserProfile.UserProfileDto;
 import com.upc.coreentities.Security.UserProfile;
@@ -50,17 +51,18 @@ public class UserProfileController {
     public List<UserProfileDto> getAll(){
         return mapper.listToResource(userProfileService.findAll());
     }
-    @GetMapping("/user/{userId}/user_profile")
+    @GetMapping("/account/{accountId}/user_profile")
     @Operation(tags = {"UserProfile"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public UserProfileDto getUserProfileByAccount(@PathVariable("userId") Long id){
+    public UserProfileDto getUserProfileByAccount(@PathVariable("accountId") Long id){
         return mapper.toResource(userProfileService.findByUserId(id));
     }
-    @PostMapping("/user/{userId}/user_profile")
+    @PostMapping("/account/{accountId}/user_profile")
     @Operation(tags = {"UserProfile"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public UserProfileDto createFavorite(@PathVariable("userId") Long accountId,@RequestBody CreateUserProfileDto resource){
+    public UserProfileDto createFavorite(@PathVariable("accountId") Long accountId,@RequestBody CreateUserProfileDto resource){
         try {
+            /*
             String fileName = UUID.randomUUID().toString() + "-" + resource.getImage().getOriginalFilename();
             Path filePath = Paths.get(uploadDir, fileName);
 
@@ -71,16 +73,24 @@ public class UserProfileController {
                     .toUriString();
             UserProfile userProfile = mapper.toModel(resource);
             userProfile.setImage(fileDownloadUri);
+
+             */
             return mapper.toResource(userProfileService.create(accountId, mapper.toModel(resource)));
         }catch (Exception e){
             throw new ResourceNotFoundException("An error occurred while loading the image");
         }
+    }
+    @GetMapping("/user_profile/{id}")
+    @Operation(tags = {"UserProfile"})
+    public UserProfileDto getUserProfileById(@PathVariable("id") Long id){
+        return mapper.toResource(userProfileService.findByUserId(id));
     }
     @PutMapping("/user_profile/{id}")
     @Operation(tags = {"UserProfile"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public UserProfileDto updateUserProfile(@PathVariable("id") Long id, @RequestBody CreateUserProfileDto resource){
         try{
+            /*
             String fileName = UUID.randomUUID().toString() + "-" + resource.getImage().getOriginalFilename();
             Path filePath = Paths.get(uploadDir, fileName);
 
@@ -91,6 +101,8 @@ public class UserProfileController {
                     .toUriString();
             UserProfile userProfile = mapper.toModel(resource);
             userProfile.setImage(fileDownloadUri);
+
+             */
             return mapper.toResource(userProfileService.update(id, mapper.toModel(resource)));
         }catch (Exception e){
             throw new ResourceNotFoundException("An error occurred while loading the image");

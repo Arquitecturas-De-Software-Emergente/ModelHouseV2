@@ -1,4 +1,7 @@
+/*
 package com.upc.security.controller;
+ */
+/*
 
 import com.upc.coreentities.Resource.Project.CreateProjectDto;
 import com.upc.coreentities.Resource.Project.ProjectDto;
@@ -90,3 +93,4 @@ public class ProjectController {
         return Map.of("Url", url);
     }
 }
+*/

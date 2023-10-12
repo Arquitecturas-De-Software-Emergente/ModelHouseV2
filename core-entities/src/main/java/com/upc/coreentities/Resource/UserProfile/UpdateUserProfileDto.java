@@ -12,8 +12,6 @@ public class UpdateUserProfileDto {
     private String firstName;
     private String image;
     private String lastName;
-    private String gender;
     private String phoneNumber;
-    private Date registrationDate;
-    private Date lastLogin;
+    private String address;
 }

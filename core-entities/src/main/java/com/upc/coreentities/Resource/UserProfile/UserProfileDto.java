@@ -18,7 +18,6 @@ public class UserProfileDto {
     private String lastName;
     private String gender;
     private String phoneNumber;
-    private Date registrationDate;
-    private Date lastLogin;
+    private String address;
     private AccountResource user;
 }
