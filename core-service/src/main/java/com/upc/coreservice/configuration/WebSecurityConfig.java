@@ -61,28 +61,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .and().cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/user/**",
-                        "/business_profile",
-                        "/media/**",
-                        "/account/{accountId}/business_profile",
-                        "/business_profile/upload/{id}",
-                        "/user_profile/upload/{id}",
-                        "/project/upload/{id}",
-                        "/project_activity/upload/{id}",
-                        "/project_resource/upload/{id}",
-                        "/business_profile/{id}",
-                        "/project",
-                        "/business_profile/{businessId}/project",
-                        "/project/{id}/profile",
-                        "/order/create-checkout-session",
-                        "/product",
-                        "/add",
-                        "/update/{productID}",
-                        "/addCart",
-                        "/carts",
-                        "/cart",
-                        "/carts/{cartId}",
-                        "/plans").permitAll()
+                .antMatchers("/**").permitAll()
+                //.antMatchers("/user/**",
+                //        "/business_profile",
+                //        "/media/**",
+                //        "/account/{accountId}/business_profile",
+                //        "/business_profile/upload/{id}",
+                //        "/user_profile/upload/{id}",
+                //        "/project/upload/{id}",
+                //        "/project_activity/upload/{id}",
+                //        "/project_resource/upload/{id}",
+                //        "/business_profile/{id}",
+                //        "/project",
+                //        "/business_profile/{businessId}/project",
+                //        "/project/{id}/profile",
+                //        "/order/create-checkout-session",
+                //        "/product",
+                //        "/add",
+                //        "/update/{productID}",
+                //        "/addCart",
+                //        "/carts",
+                //        "/cart",
+                //        "/carts/{cartId}",
+                //        "/plans").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

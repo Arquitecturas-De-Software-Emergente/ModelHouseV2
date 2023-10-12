@@ -65,7 +65,7 @@ public class ProjectActivityController {
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
-                .path("/servicemanagement/media/")
+                .path("/service-management/media/")
                 .path(path)
                 .toUriString();
         projectActivity.setImage(url);
