@@ -19,10 +19,10 @@ public class ProjectActivity {
     private String description;
     private String status;
     private Date startedAt;
-    private String image;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
 
     /*
     @Id

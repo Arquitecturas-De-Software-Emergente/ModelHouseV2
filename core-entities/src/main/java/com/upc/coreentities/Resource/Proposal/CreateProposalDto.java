@@ -6,6 +6,8 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @Getter
 @Setter
 @With
@@ -21,8 +23,8 @@ public class CreateProposalDto {
     @NotNull
     @NotBlank
     private String file;
-    private CreateProjectActivityDto projectActivity;
-    private CreateProjectResourceDto projectResource;
+    private List<CreateProjectActivityDto> projectActivities;
+    private List<CreateProjectResourceDto> projectResource;
 
     /*
     @NotBlank

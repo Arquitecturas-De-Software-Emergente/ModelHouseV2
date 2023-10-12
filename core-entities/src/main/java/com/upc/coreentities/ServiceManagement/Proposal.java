@@ -1,11 +1,14 @@
 package com.upc.coreentities.ServiceManagement;
 
+import com.upc.coreentities.Resource.ProjectActivity.CreateProjectActivityDto;
+import com.upc.coreentities.Resource.ProjectResource.CreateProjectResourceDto;
 import com.upc.coreentities.Security.BusinessProfile;
 import com.upc.coreentities.Security.Project;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -39,6 +42,15 @@ public class Proposal {
     @JoinColumn(name = "request_id")
     private Request request;
 
+    /*
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
+    @JoinColumn(name = "activities")
+    private List<ProjectActivity> projectActivity;
+
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
+    @JoinColumn(name = "resources")
+    private List<ProjectResource> projectResource;
+*/
 
     /*
     @Id

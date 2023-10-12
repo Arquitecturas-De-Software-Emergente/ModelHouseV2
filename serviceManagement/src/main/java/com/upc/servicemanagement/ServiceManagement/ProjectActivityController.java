@@ -68,7 +68,6 @@ public class ProjectActivityController {
                 .path("/service-management/media/")
                 .path(path)
                 .toUriString();
-        projectActivity.setImage(url);
         projectActivityService.update(id, projectActivity);
         return Map.of("Url", url);
     }

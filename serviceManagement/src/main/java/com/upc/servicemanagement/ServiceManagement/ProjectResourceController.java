@@ -71,7 +71,6 @@ public class ProjectResourceController {
                     .path(fileName)
                     .toUriString();
             ProjectResource projectResource = mapper.toModel(resource);
-            projectResource.setImage(fileDownloadUri);
             return mapper.toResource(projectResourceService.update(id, mapper.toModel(resource)));
         }catch (Exception e){
             throw new ResourceNotFoundException("An error occurred while loading the image");

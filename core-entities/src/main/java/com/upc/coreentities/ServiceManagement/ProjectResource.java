@@ -18,10 +18,11 @@ public class ProjectResource {
     private Number quantity;
     private String resourceType;
     private String state;
-    private String image;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
+
 
     /*
     @Id

@@ -32,7 +32,7 @@ public class RequestController {
         return mapper.listToResource(requestService.getAll());
     }
 
-    /*
+/*
     @GetMapping("/business/{businessId}/status/{status}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -40,6 +40,8 @@ public class RequestController {
                                                @PathVariable("status") String status){
         return mapper.listToResource(requestService.findAllBusinessProfileIdAndStatus(id,status));
     }
+
+ */
     @GetMapping("/user/{userId}/status/{status}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -47,7 +49,7 @@ public class RequestController {
                                            @PathVariable("status") String status){
         return mapper.listToResource(requestService.findAllUserProfileIdAndStatus(id,status));
     }
-    */
+
     @PostMapping("/user/{userId}/business/{businessId}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -57,7 +59,7 @@ public class RequestController {
         return mapper.toResource(requestService.create(userId, businessId, mapper.toModel(createRequestDto)));
     }
 
-    /*
+
     @PutMapping("/request/{id}")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -65,7 +67,7 @@ public class RequestController {
         return mapper.toResource(requestService.changeStatus(id, mapper.toModel(changeStatusRequestDto)));
     }
 
-     */
+
 
     @DeleteMapping("/request/{id}")
     @Operation(tags = {"Request"})

@@ -41,18 +41,18 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findAll();
     }
 
-    /*
+/*
     @Override
     public List<Request> findAllBusinessProfileIdAndStatus(Long id, String status) {
-        return requestRepository.findAllByBusinessProfileIdAndStatus(id, status);
+        return requestRepository.findAllByBusinessProfileIdAndRequestStatus(id, status);
     }
-
+*/
     @Override
     public List<Request> findAllUserProfileIdAndStatus(Long id, String status) {
-        return requestRepository.findAllByUserProfileIdAndStatus(id, status);
+        return requestRepository.findAllByUserProfileIdAndRequestStatus(id, status);
     }
 
-     */
+
 
     @Override
     public Request create(Long userId, Long businessId, Request request) {
@@ -79,16 +79,15 @@ public class RequestServiceImpl implements RequestService {
         }).orElseThrow(()->new ResourceNotFoundException(ENTITY, id));
     }
 
-    /*
+
     @Override
     public Request changeStatus(Long id, Request request) {
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
         return requestRepository.findById(id).map(change ->
-                        requestRepository.save(change.withStatus(request.getStatus())))
+                        requestRepository.save(change.withRequestStatus(request.getRequestStatus())))
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY , id));
     }
 
-     */
 }
