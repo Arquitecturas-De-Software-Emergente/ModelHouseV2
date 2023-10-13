@@ -10,6 +10,8 @@ import com.upc.coreservice.Mapping.ProjectMapper;
 import com.upc.coreservice.Service.Interfaces.ProjectService;
 import com.upc.coreservice.Service.Interfaces.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
@@ -74,7 +77,7 @@ public class ProjectController {
     public ResponseEntity<?> deleteProject(@PathVariable("id") Long id){
         return  projectService.deleteProject(id);
     }
-/*
+
     @PostMapping("/project/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     @Operation(tags = {"Project"})
@@ -94,6 +97,14 @@ public class ProjectController {
         projectService.update(id, project);
         return Map.of("Url", url);
     }
+    @GetMapping("/project/media/{filename:.+}")
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"Project"})
+    public ResponseEntity<Resource> upload(@PathVariable String filename) throws IOException {
+        Resource file = storageService.loadAsResource(filename);
+        String contentType = Files.probeContentType(file.getFile().toPath());
 
- */
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, contentType)
+                .body(file);
+    }
 }

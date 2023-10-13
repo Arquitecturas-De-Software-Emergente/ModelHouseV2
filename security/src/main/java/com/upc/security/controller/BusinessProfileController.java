@@ -83,8 +83,9 @@ public class BusinessProfileController {
         businessProfileService.update(id, businessProfile);
         return Map.of("Url", url);
     }
-    @GetMapping("/media/{filename:.+}")
+    @GetMapping("/business_profile/media/{filename:.+}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"BusinessProfile"})
     public ResponseEntity<Resource> upload(@PathVariable String filename) throws IOException {
         Resource file = storageService.loadAsResource(filename);
         String contentType = Files.probeContentType(file.getFile().toPath());

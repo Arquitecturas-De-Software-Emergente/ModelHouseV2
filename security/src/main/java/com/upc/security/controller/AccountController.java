@@ -67,31 +67,6 @@ public class AccountController {
             return ResponseEntity.badRequest().body(errorResource);
         }
         Account account = accountService.register(credentials);
-       // CreateAccountDto account = new CreateAccountDto();
-       // account.setIsActive(true);
         return ResponseEntity.ok(Objects.requireNonNullElse(account, "Registration failed, please try again"));
     }
-
-
-    /*
-    @GetMapping("/account/{Id}")
-    @Operation(tags = {"Account"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public AccountDto getAccount(@PathVariable("Id") Long id){
-        return mapper.toResource(accountService.findById(id));
-    }
-    @GetMapping("/user/{userId}/account")
-    @Operation(tags = {"Account"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public AccountDto getAccountByUser(@PathVariable("userId") Long userId){
-        return mapper.toResource(accountService.findByUserId(userId));
-    }
-    @PostMapping("/user/{userId}/account")
-    @Operation(tags = {"Account"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public AccountDto createAccount(@PathVariable("userId") Long userId,@RequestBody CreateAccountDto resource){
-        return mapper.toResource(accountService.create(userId, mapper.toModel(resource)));
-    }
-
-     */
 }
