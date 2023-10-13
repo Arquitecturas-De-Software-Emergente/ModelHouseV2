@@ -1,6 +1,7 @@
 package com.upc.coreservice.Service.ServiceManagement;
 
 import com.upc.coreentities.Security.UserProfile;
+import com.upc.coreentities.ServiceManagement.Proposal;
 import com.upc.coreentities.ServiceManagement.Request;
 import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
@@ -47,26 +48,28 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findAllByBusinessProfileIdAndRequestStatus(id, status);
     }
 */
+
+
     @Override
     public List<Request> findAllUserProfileIdAndStatus(Long id, String status) {
         return requestRepository.findAllByUserProfileIdAndRequestStatus(id, status);
     }
 
 
-
     @Override
     public Request create(Long userId, Long businessId, Request request) {
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
-        if(!violations.isEmpty())
+        if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
         return businessProfileRepository.findById(businessId).map(businessProfile -> {
             UserProfile userProfile = userProfileRepository.findUserProfileById(userId);
-            if(userProfile == null)
+            if (userProfile == null)
                 throw new ResourceNotFoundException("The client does not exist");
-            if(businessProfile.getAccount().getId().equals(userProfile.getId()))
+            if (businessProfile.getAccount().getId().equals(userProfile.getId()))
                 throw new ResourceNotFoundException("The company cannot make a request to it");
             request.setUserProfile(userProfile);
+            request.setBusinessProfile(businessProfile);
             return requestRepository.save(request);
         }).orElseThrow(() -> new ResourceNotFoundException("BusinessProfile", businessId));
     }
@@ -76,18 +79,35 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findById(id).map(request -> {
             requestRepository.delete(request);
             return ResponseEntity.ok().build();
-        }).orElseThrow(()->new ResourceNotFoundException(ENTITY, id));
+        }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
 
 
     @Override
     public Request changeStatus(Long id, Request request) {
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
-        if(!violations.isEmpty())
+        if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
-        return requestRepository.findById(id).map(change ->
-                        requestRepository.save(change.withRequestStatus(request.getRequestStatus())))
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY , id));
+        }
+
+        return requestRepository.findById(id).map(change -> {
+            String newStatus = request.getRequestStatus();
+            String originalStatus = change.getRequestStatus();
+
+            if ("Aprobado".equals(newStatus) && !"Aprobado".equals(originalStatus)) {
+                Proposal proposal = new Proposal();
+                proposal.setTitle(change.getTitle());
+                proposal.setDescription(change.getDescription());
+                proposal.setBusinessProfile(change.getBusinessProfile());
+
+                proposalRepository.save(proposal);
+            }
+
+            change.setRequestStatus(newStatus);
+
+            return requestRepository.save(change);
+        }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
 
 }
+

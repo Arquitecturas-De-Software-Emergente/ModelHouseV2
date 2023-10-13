@@ -1,9 +1,12 @@
 package com.upc.coreservice.Mapping;
 
+import com.upc.coreentities.Resource.Proposal.ChangeStatusProposalDto;
 import com.upc.coreentities.Resource.Proposal.CreateProposalDto;
 import com.upc.coreentities.Resource.Proposal.ProposalDto;
 import com.upc.coreentities.Resource.Proposal.UpdateProposalDto;
+import com.upc.coreentities.Resource.Request.ChangeStatusRequestDto;
 import com.upc.coreentities.ServiceManagement.Proposal;
+import com.upc.coreentities.ServiceManagement.Request;
 import com.upc.coreentities.Util.Shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +32,9 @@ public class ProposalMapper implements Serializable {
     public Proposal toModel(ProposalDto resource) {
         return mapper.map(resource, Proposal.class);
     }
-
+    public Proposal toModel(ChangeStatusProposalDto resource) {
+        return mapper.map(resource, Proposal.class);
+    }
     public Proposal toModel(CreateProposalDto resource) {
         return mapper.map(resource, Proposal.class);
     }

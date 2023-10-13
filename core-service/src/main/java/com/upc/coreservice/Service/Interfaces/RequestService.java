@@ -12,4 +12,5 @@ public interface RequestService {
     Request create(Long userId, Long businessId, Request request);
     ResponseEntity<?> delete(Long id);
     Request changeStatus(Long id, Request request);
+
 }

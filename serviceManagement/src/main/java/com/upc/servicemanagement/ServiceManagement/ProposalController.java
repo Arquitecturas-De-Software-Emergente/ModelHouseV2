@@ -1,8 +1,11 @@
 package com.upc.servicemanagement.ServiceManagement;
 
+import com.upc.coreentities.Resource.Proposal.ChangeStatusProposalDto;
 import com.upc.coreentities.Resource.Proposal.CreateProposalDto;
 import com.upc.coreentities.Resource.Proposal.ProposalDto;
 import com.upc.coreentities.Resource.Proposal.UpdateProposalDto;
+import com.upc.coreentities.Resource.Request.ChangeStatusRequestDto;
+import com.upc.coreentities.Resource.Request.RequestDto;
 import com.upc.coreentities.Security.Project;
 import com.upc.coreentities.ServiceManagement.Proposal;
 import com.upc.coreservice.Mapping.ProposalMapper;
@@ -44,6 +47,8 @@ public class ProposalController {
     public ProposalDto getAllByRequestId(@PathVariable("requestId") Long id){
         return mapper.toResource(proposalService.findAllRequestId(id));
     }
+
+    /*
     @PostMapping("/request/{requestId}/proposal")
     @Operation(tags = {"Proposal"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -59,12 +64,21 @@ public class ProposalController {
         }
         return null;
     }
+    */
     @PutMapping("/proposal/{id}")
     @Operation(tags = {"Proposal"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public ProposalDto updateProposal(@PathVariable("id") Long id, @RequestBody UpdateProposalDto updateProposalDto){
         return mapper.toResource(proposalService.update(id, mapper.toModel(updateProposalDto)));
     }
+
+    @PutMapping("/request/{id}/status")
+    @Operation(tags = {"Proposal"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public ProposalDto updateStatusProposal(@PathVariable("id") Long id, @RequestBody ChangeStatusProposalDto changeStatusProposalDto){
+        return mapper.toResource(proposalService.changeStatus(id, mapper.toModel(changeStatusProposalDto)));
+    }
+
     @DeleteMapping("/proposal/{id}")
     @Operation(tags = {"Proposal"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

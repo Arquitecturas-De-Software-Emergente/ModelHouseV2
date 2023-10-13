@@ -19,10 +19,15 @@ public class ProjectActivity {
     private String description;
     private String status;
     private Date startedAt;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "project_id", nullable = true)
     private Project project;
 
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "proposal_id", nullable = false)
+    private Proposal proposal;
 
     /*
     @Id

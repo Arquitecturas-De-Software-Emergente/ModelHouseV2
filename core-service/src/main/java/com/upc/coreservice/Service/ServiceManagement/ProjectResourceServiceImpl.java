@@ -1,5 +1,6 @@
 package com.upc.coreservice.Service.ServiceManagement;
 
+import com.upc.coreentities.Security.Project;
 import com.upc.coreentities.ServiceManagement.ProjectResource;
 import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -33,16 +35,27 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         return projectResourceRepository.findAllByProjectId(id);
     }
 
+
     @Override
     public ProjectResource create(Long projectId, ProjectResource projectResource) {
         Set<ConstraintViolation<ProjectResource>> violations = validator.validate(projectResource);
-        if(!violations.isEmpty())
+        if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
-        return projectRepository.findById(projectId).map(project -> {
+        }
+
+        Optional<Project> optionalProject = projectRepository.findById(projectId);
+
+        if (optionalProject.isPresent()) {
+
+            Project project = optionalProject.get();
             projectResource.setProject(project);
             return projectResourceRepository.save(projectResource);
-        }).orElseThrow(() -> new ResourceNotFoundException("Proposal", projectId));
+        } else {
+            throw new ResourceNotFoundException("Project", projectId);
+        }
     }
+
+
 
     @Override
     public ResponseEntity<?> delete(Long id) {

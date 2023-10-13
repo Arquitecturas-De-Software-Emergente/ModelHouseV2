@@ -19,6 +19,7 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
     @Column(name = "request_date")
     private Date requestDate;
     @Column(name = "request_status")
@@ -38,6 +39,10 @@ public class Request {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_profile_id", nullable = false)
     private UserProfile userProfile;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "business_profile_id", nullable = false)
+    private BusinessProfile businessProfile;
 
     @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
     private Proposal proposal;

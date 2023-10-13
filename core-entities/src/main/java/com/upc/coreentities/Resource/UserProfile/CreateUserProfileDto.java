@@ -23,5 +23,4 @@ public class CreateUserProfileDto {
     @NotBlank
     private String phoneNumber;
     private String address;
-    private AccountResource user;
 }

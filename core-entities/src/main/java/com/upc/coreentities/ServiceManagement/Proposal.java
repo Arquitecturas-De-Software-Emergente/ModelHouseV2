@@ -27,6 +27,7 @@ public class Proposal {
     private String title;
     private String description;
     private Float price;
+    private String file;
     @Column(name = "estimated_time")
     private Date estimatedTime;
     @Column(name = "is_response")
@@ -42,15 +43,12 @@ public class Proposal {
     @JoinColumn(name = "request_id")
     private Request request;
 
-    /*
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
-    @JoinColumn(name = "activities")
     private List<ProjectActivity> projectActivity;
 
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
-    @JoinColumn(name = "resources")
     private List<ProjectResource> projectResource;
-*/
+
 
     /*
     @Id

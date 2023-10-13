@@ -69,7 +69,7 @@ public class RequestController {
 
 
 
-    @DeleteMapping("/request/{id}")
+    @DeleteMapping("/request/{id}/status")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public ResponseEntity<?> deleteProject(@PathVariable("id") Long id){

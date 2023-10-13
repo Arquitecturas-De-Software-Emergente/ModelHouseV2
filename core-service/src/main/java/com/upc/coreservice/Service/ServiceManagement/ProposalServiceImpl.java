@@ -1,8 +1,10 @@
 package com.upc.coreservice.Service.ServiceManagement;
 
+import com.upc.coreentities.Security.Project;
 import com.upc.coreentities.ServiceManagement.Proposal;
 import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
+import com.upc.coreservice.Repository.Security.ProjectRepository;
 import com.upc.coreservice.Repository.ServiceManagement.ProposalRepository;
 import com.upc.coreservice.Repository.ServiceManagement.RequestRepository;
 import com.upc.coreservice.Service.Interfaces.ProposalService;
@@ -19,12 +21,14 @@ import java.util.Set;
 public class ProposalServiceImpl implements ProposalService {
     private final ProposalRepository proposalRepository;
     private final RequestRepository requestRepository;
+    private final ProjectRepository projectRepository;
     private final Validator validator;
     private static final String ENTITY = "Proposal";
 
-    public ProposalServiceImpl(ProposalRepository proposalRepository, RequestRepository requestRepository, Validator validator) {
+    public ProposalServiceImpl(ProposalRepository proposalRepository, RequestRepository requestRepository, ProjectRepository projectRepository, Validator validator) {
         this.proposalRepository = proposalRepository;
         this.requestRepository = requestRepository;
+        this.projectRepository = projectRepository;
         this.validator = validator;
     }
 
@@ -63,6 +67,42 @@ public class ProposalServiceImpl implements ProposalService {
 
     @Override
     public Proposal update(Long id, Proposal request) {
-        return null;
+        Set<ConstraintViolation<Proposal>> violations = validator.validate(request);
+        if(!violations.isEmpty())
+            throw new ResourceValidationException(ENTITY, violations);
+return proposalRepository.findById(id).map(proposal -> {
+            proposal.setTitle(request.getTitle());
+            proposal.setDescription(request.getDescription());
+            proposal.setFile(request.getFile());
+            proposal.setProjectActivity(request.getProjectActivity());
+            proposal.setProjectResource(request.getProjectResource());
+    return proposalRepository.save(proposal);
+        }).orElseThrow(()->new ResourceNotFoundException(ENTITY, id));
+
+    }
+
+    @Override
+    public Proposal changeStatus(Long id, Proposal proposal) {
+        Set<ConstraintViolation<Proposal>> violations = validator.validate(proposal);
+        if (!violations.isEmpty()) {
+            throw new ResourceValidationException(ENTITY, violations);
+        }
+
+        return proposalRepository.findById(id).map(change -> {
+            String newStatus = proposal.getProposalStatus();
+            String originalStatus = change.getProposalStatus();
+
+            if ("Aprobado".equals(newStatus) && !"Aprobado".equals(originalStatus)) {
+                Project project = new Project();
+                project.setTitle(change.getTitle());
+                project.setDescription(change.getDescription());
+                project.setBusinessProfile(change.getBusinessProfile());
+                projectRepository.save(project);
+            }
+
+            change.setProposalStatus(newStatus);
+
+            return proposalRepository.save(change);
+        }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
 }

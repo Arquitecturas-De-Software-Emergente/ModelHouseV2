@@ -1,6 +1,8 @@
 package com.upc.coreservice.Service.ServiceManagement;
 
+import com.upc.coreentities.Security.Project;
 import com.upc.coreentities.ServiceManagement.ProjectActivity;
+import com.upc.coreentities.ServiceManagement.Proposal;
 import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
 import com.upc.coreservice.Repository.Security.ProjectRepository;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -33,16 +36,26 @@ public class ProjectActivityServiceImpl implements ProjectActivityService {
         return projectActivityRepository.findAllByProjectId(id);
     }
 
+
     @Override
     public ProjectActivity create(Long projectId, ProjectActivity projectActivity) {
         Set<ConstraintViolation<ProjectActivity>> violations = validator.validate(projectActivity);
-        if(!violations.isEmpty())
+        if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
-        return projectRepository.findById(projectId).map(project -> {
+        }
+
+        Optional<Project> optionalProject = projectRepository.findById(projectId);
+
+        if (optionalProject.isPresent()) {
+            Project project = optionalProject.get();
             projectActivity.setProject(project);
             return projectActivityRepository.save(projectActivity);
-        }).orElseThrow(() -> new ResourceNotFoundException("Proposal", projectId));
+        } else {
+            throw new ResourceNotFoundException("Project", projectId);
+        }
     }
+
+
 
     @Override
     public ResponseEntity<?> delete(Long id) {

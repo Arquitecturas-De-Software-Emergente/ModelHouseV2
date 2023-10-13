@@ -1,5 +1,6 @@
 package com.upc.coreentities.Resource.Proposal;
 
+
 import com.upc.coreentities.Resource.ProjectActivity.CreateProjectActivityDto;
 import com.upc.coreentities.Resource.ProjectResource.CreateProjectResourceDto;
 import lombok.*;
@@ -23,8 +24,7 @@ public class CreateProposalDto {
     @NotNull
     @NotBlank
     private String file;
-    private List<CreateProjectActivityDto> projectActivities;
-    private List<CreateProjectResourceDto> projectResource;
+
 
     /*
     @NotBlank
