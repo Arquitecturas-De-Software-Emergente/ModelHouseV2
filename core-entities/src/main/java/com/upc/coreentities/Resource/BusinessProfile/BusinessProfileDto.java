@@ -1,6 +1,7 @@
 package com.upc.coreentities.Resource.BusinessProfile;
 
 import com.upc.coreentities.Resource.AccountResource;
+import com.upc.coreentities.Resource.Review.ReviewDto;
 import lombok.*;
 
 @Getter
@@ -17,5 +18,6 @@ public class BusinessProfileDto {
     private String webSite;
     private String phoneBusiness;
     private String foundationDate;
+    private ReviewDto review;
     private AccountResource account;
 }

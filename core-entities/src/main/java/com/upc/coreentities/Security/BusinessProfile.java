@@ -1,9 +1,8 @@
 package com.upc.coreentities.Security;
 
 import javax.persistence.*;
-import lombok.*;
 
-import java.util.Date;
+import lombok.*;
 
 @Getter
 @Setter
@@ -26,8 +25,9 @@ public class BusinessProfile {
     private String description;
     @Column(name = "foundation_date")
     private String foundationDate;
-
-
+    @OneToOne
+    @JoinColumn(name = "review_id", nullable = true)
+    private Review review;
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
