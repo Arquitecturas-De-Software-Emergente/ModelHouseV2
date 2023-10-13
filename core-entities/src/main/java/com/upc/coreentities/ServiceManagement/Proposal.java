@@ -26,7 +26,6 @@ public class Proposal {
     private String proposalStatus;
     private String title;
     private String description;
-    private Float price;
     private String file;
     @Column(name = "estimated_time")
     private Date estimatedTime;
