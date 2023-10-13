@@ -19,13 +19,14 @@ public class ProjectResource {
     private String resourceType;
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+
+    @ManyToOne(optional = true)
     @JoinColumn(name = "project_id", nullable = true)
     private Project project;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "proposal_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "proposal_id", nullable = true)
     private Proposal proposal;
 
 

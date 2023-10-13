@@ -24,10 +24,13 @@ public class Project {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "business_profile_id", nullable = false)
     private BusinessProfile businessProfile;
-    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
+
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<ProjectActivity> projectActivity;
-    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<ProjectResource> projectResource;
+
     @OneToOne
     @JoinColumn(name = "proposal_id")
     private Proposal proposal;

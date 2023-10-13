@@ -51,7 +51,7 @@ public class ProjectActivityController {
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public ProjectActivityDto create(@PathVariable("proposalId") Long proposalId,
                                             @RequestBody CreateProjectActivityDto createProjectActivityDto){
-        return mapper.toResource(projectActivityService.create(proposalId, mapper.toModel(createProjectActivityDto)));
+        return mapper.toResource(projectActivityService.createForProposal(proposalId, mapper.toModel(createProjectActivityDto)));
     }
     @PostMapping("/project_activity/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

@@ -74,8 +74,6 @@ return proposalRepository.findById(id).map(proposal -> {
             proposal.setTitle(request.getTitle());
             proposal.setDescription(request.getDescription());
             proposal.setFile(request.getFile());
-            proposal.setProjectActivity(request.getProjectActivity());
-            proposal.setProjectResource(request.getProjectResource());
     return proposalRepository.save(proposal);
         }).orElseThrow(()->new ResourceNotFoundException(ENTITY, id));
 

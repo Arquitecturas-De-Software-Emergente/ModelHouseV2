@@ -7,6 +7,7 @@ import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
 import com.upc.coreservice.Repository.Security.ProjectRepository;
 import com.upc.coreservice.Repository.ServiceManagement.ProjectActivityRepository;
+import com.upc.coreservice.Repository.ServiceManagement.ProposalRepository;
 import com.upc.coreservice.Service.Interfaces.ProjectActivityService;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProjectActivityServiceImpl implements ProjectActivityService {
     private final ProjectRepository projectRepository;
+    private final ProposalRepository proposalRepository;
     private final ProjectActivityRepository projectActivityRepository;
     private final Validator validator;
     private static final String ENTITY = "ProjectActivity";
@@ -31,14 +34,36 @@ public class ProjectActivityServiceImpl implements ProjectActivityService {
         return projectActivityRepository.getById(id);
     }
 
+
     @Override
     public List<ProjectActivity> findAllProposalId(Long id) {
-        return projectActivityRepository.findAllByProjectId(id);
+        return projectActivityRepository.findAllByProposalId(id);
+    }
+
+    @Override
+    public ProjectActivity createForProposal(Long proposalId, ProjectActivity projectActivity) {
+        Set<ConstraintViolation<ProjectActivity>> violations = validator.validate(projectActivity);
+        if (!violations.isEmpty()) {
+            throw new ResourceValidationException(ENTITY, violations);
+        }
+
+        Proposal proposal = proposalRepository.findProposalById(proposalId);
+
+        if (proposal != null) {
+
+            projectActivity.setProposal(proposal);
+            projectActivityRepository.save(projectActivity);
+            proposalRepository.save(proposal);
+            return projectActivity;
+        } else {
+            throw new ResourceNotFoundException("Proposal", proposalId);
+        }
     }
 
 
+
     @Override
-    public ProjectActivity create(Long projectId, ProjectActivity projectActivity) {
+    public ProjectActivity createForProject(Long projectId, ProjectActivity projectActivity) {
         Set<ConstraintViolation<ProjectActivity>> violations = validator.validate(projectActivity);
         if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
@@ -54,6 +79,36 @@ public class ProjectActivityServiceImpl implements ProjectActivityService {
             throw new ResourceNotFoundException("Project", projectId);
         }
     }
+
+
+
+/*
+    @Override
+    public ProjectActivity create(Long projectId, ProjectActivity projectActivity) {
+        Set<ConstraintViolation<ProjectActivity>> violations = validator.validate(projectActivity);
+        if (!violations.isEmpty()) {
+            throw new ResourceValidationException(ENTITY, violations);
+        }
+
+        Optional<Project> optionalProject = projectRepository.findById(projectId);
+
+        if (optionalProject.isPresent()) {
+            Project project = optionalProject.get();
+            projectActivity.setProject(project);
+        } else {
+            Proposal proposal = proposalRepository.findById(projectId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Proposal", projectId));
+            if (proposal != null) {
+                projectActivity.setProposal(proposal);
+            } else {
+                throw new ResourceNotFoundException("Project or Proposal", projectId);
+            }
+        }
+
+        return projectActivityRepository.save(projectActivity);
+    }
+
+ */
 
 
 

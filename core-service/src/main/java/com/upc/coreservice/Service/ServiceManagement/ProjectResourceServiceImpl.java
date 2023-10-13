@@ -1,11 +1,14 @@
 package com.upc.coreservice.Service.ServiceManagement;
 
 import com.upc.coreentities.Security.Project;
+import com.upc.coreentities.ServiceManagement.ProjectActivity;
 import com.upc.coreentities.ServiceManagement.ProjectResource;
+import com.upc.coreentities.ServiceManagement.Proposal;
 import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
 import com.upc.coreservice.Repository.Security.ProjectRepository;
 import com.upc.coreservice.Repository.ServiceManagement.ProjectResourceRepository;
+import com.upc.coreservice.Repository.ServiceManagement.ProposalRepository;
 import com.upc.coreservice.Service.Interfaces.ProjectResourceService;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -21,6 +24,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProjectResourceServiceImpl implements ProjectResourceService {
     private final ProjectRepository projectRepository;
+    private final ProposalRepository proposalRepository;
     private final ProjectResourceRepository projectResourceRepository;
     private final Validator validator;
     private static final String ENTITY = "Request";
@@ -32,10 +36,20 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
 
     @Override
     public List<ProjectResource> findAllProposalId(Long id) {
-        return projectResourceRepository.findAllByProjectId(id);
+        return projectResourceRepository.findAllByProposalId(id);
     }
 
+    @Override
+    public ProjectResource createForProposal(Long projectId, ProjectResource projectResource) {
+        return null;
+    }
 
+    @Override
+    public ProjectResource createForProject(Long projectId, ProjectResource projectResource) {
+        return null;
+    }
+
+/*
     @Override
     public ProjectResource create(Long projectId, ProjectResource projectResource) {
         Set<ConstraintViolation<ProjectResource>> violations = validator.validate(projectResource);
@@ -44,16 +58,24 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         }
 
         Optional<Project> optionalProject = projectRepository.findById(projectId);
+        Optional<Proposal> optionalProposal = proposalRepository.findById(projectId);
 
         if (optionalProject.isPresent()) {
-
             Project project = optionalProject.get();
             projectResource.setProject(project);
             return projectResourceRepository.save(projectResource);
+        } else
+            if (optionalProposal.isPresent()) {
+            Proposal proposal = optionalProposal.get();
+            projectResource.setProposal(proposal);
+
+            return projectResourceRepository.save(projectResource);
         } else {
-            throw new ResourceNotFoundException("Project", projectId);
+            throw new ResourceNotFoundException("Project or Proposal", projectId);
         }
     }
+
+ */
 
 
 
