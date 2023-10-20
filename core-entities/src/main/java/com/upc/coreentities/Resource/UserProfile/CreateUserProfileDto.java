@@ -16,7 +16,6 @@ public class CreateUserProfileDto {
     @NotNull
     @NotBlank
     private String firstName;
-    private String image;
     private String lastName;
     private String gender;
     @NotNull

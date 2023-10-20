@@ -61,24 +61,7 @@ public class UserProfileController {
     @Operation(tags = {"UserProfile"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public UserProfileDto createFavorite(@PathVariable("accountId") Long accountId,@RequestBody CreateUserProfileDto resource){
-        try {
-            /*
-            String fileName = UUID.randomUUID().toString() + "-" + resource.getImage().getOriginalFilename();
-            Path filePath = Paths.get(uploadDir, fileName);
-
-            resource.getImage().transferTo(filePath);
-            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path(uploadDir)
-                    .path(fileName)
-                    .toUriString();
-            UserProfile userProfile = mapper.toModel(resource);
-            userProfile.setImage(fileDownloadUri);
-
-             */
-            return mapper.toResource(userProfileService.create(accountId, mapper.toModel(resource)));
-        }catch (Exception e){
-            throw new ResourceNotFoundException("An error occurred while loading the image");
-        }
+        return mapper.toResource(userProfileService.create(accountId, mapper.toModel(resource)));
     }
     @GetMapping("/user_profile/{id}")
     @Operation(tags = {"UserProfile"})
@@ -89,24 +72,7 @@ public class UserProfileController {
     @Operation(tags = {"UserProfile"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public UserProfileDto updateUserProfile(@PathVariable("id") Long id, @RequestBody CreateUserProfileDto resource){
-        try{
-            /*
-            String fileName = UUID.randomUUID().toString() + "-" + resource.getImage().getOriginalFilename();
-            Path filePath = Paths.get(uploadDir, fileName);
-
-            resource.getImage().transferTo(filePath);
-            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path(uploadDir)
-                    .path(fileName)
-                    .toUriString();
-            UserProfile userProfile = mapper.toModel(resource);
-            userProfile.setImage(fileDownloadUri);
-
-             */
-            return mapper.toResource(userProfileService.update(id, mapper.toModel(resource)));
-        }catch (Exception e){
-            throw new ResourceNotFoundException("An error occurred while loading the image");
-        }
+        return mapper.toResource(userProfileService.update(id, mapper.toModel(resource)));
     }
     @PostMapping("/user_profile/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

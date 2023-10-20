@@ -14,4 +14,6 @@ public class AccountResource {
     private String emailAddress;
     private Boolean isActive;
     private String token;
+    private String userProfileId;
+    private String businessProfileId;
 }
