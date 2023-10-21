@@ -29,8 +29,5 @@ public class CreateBusinessProfileDto {
     @NotNull
     @NotBlank
     private String phoneNumber;
-    @NotNull
-    @NotBlank
-    private String foundationDate;
 
 }

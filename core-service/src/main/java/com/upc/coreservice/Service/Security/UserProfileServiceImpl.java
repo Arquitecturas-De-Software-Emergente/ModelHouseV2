@@ -34,17 +34,21 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
-    public UserProfile create(Long userId, UserProfile userProfile) {
+    public UserProfile create(Long accountId, UserProfile userProfile) {
         Set<ConstraintViolation<UserProfile>> violations = validator.validate(userProfile);
+        System.out.println(userProfile);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
-        UserProfile userProfileExist = userProfileRepository.findUserProfileById(userId);
+        System.out.println(userProfile);
+        UserProfile userProfileExist = userProfileRepository.findUserProfileByAccountId(accountId);
+        System.out.println(userProfile);
         if(userProfileExist != null)
             throw new ResourceNotFoundException("User Profile is exist");
-        return userRepository.findById(userId).map(user -> {
+        System.out.println(userProfile);
+        return userRepository.findById(accountId).map(user -> {
             userProfile.setAccount(user);
             return userProfileRepository.save(userProfile);
-        }).orElseThrow(() -> new ResourceNotFoundException("Request", userId));
+        }).orElseThrow(() -> new ResourceNotFoundException("Request", accountId));
 
     }
 
