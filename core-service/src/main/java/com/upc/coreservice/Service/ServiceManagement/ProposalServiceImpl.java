@@ -53,6 +53,7 @@ public class ProposalServiceImpl implements ProposalService {
             throw new ResourceNotFoundException("Proposal is exist");
         return requestRepository.findById(requestId).map(request -> {
             proposal.setRequest(request);
+            proposal.setProposalStatus("Pendiente");
             return proposalRepository.save(proposal);
         }).orElseThrow(() -> new ResourceNotFoundException("Request", requestId));
     }

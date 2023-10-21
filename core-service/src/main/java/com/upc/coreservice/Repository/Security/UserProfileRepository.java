@@ -10,5 +10,5 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
     @Override
     List<UserProfile> findAll();
     UserProfile findUserProfileById(Long id);
-    //UserProfile findUserProfileById(Long id);
+
 }

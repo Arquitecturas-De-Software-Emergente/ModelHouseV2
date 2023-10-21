@@ -42,12 +42,12 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findAll();
     }
 
-/*
+
     @Override
     public List<Request> findAllBusinessProfileIdAndStatus(Long id, String status) {
         return requestRepository.findAllByBusinessProfileIdAndRequestStatus(id, status);
     }
-*/
+
 
 
     @Override
@@ -66,10 +66,11 @@ public class RequestServiceImpl implements RequestService {
             UserProfile userProfile = userProfileRepository.findUserProfileById(userId);
             if (userProfile == null)
                 throw new ResourceNotFoundException("The client does not exist");
-            if (businessProfile.getAccount().getId().equals(userProfile.getId()))
+            if (businessProfile.getAccount().getId().equals(userProfile.getAccount().getId()))
                 throw new ResourceNotFoundException("The company cannot make a request to it");
             request.setUserProfile(userProfile);
             request.setBusinessProfile(businessProfile);
+            request.setRequestStatus("Pendiente");
             return requestRepository.save(request);
         }).orElseThrow(() -> new ResourceNotFoundException("BusinessProfile", businessId));
     }
@@ -99,7 +100,7 @@ public class RequestServiceImpl implements RequestService {
                 proposal.setTitle(change.getTitle());
                 proposal.setDescription(change.getDescription());
                 proposal.setBusinessProfile(change.getBusinessProfile());
-
+                proposal.setProposalStatus("Pendiente");
                 proposalRepository.save(proposal);
             }
 

@@ -32,28 +32,28 @@ public class RequestController {
         return mapper.listToResource(requestService.getAll());
     }
 
-/*
-    @GetMapping("/business/{businessId}/status/{status}/request")
+
+    @GetMapping("/businessProfile/{businessProfileId}/status/{status}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public List<RequestDto> getAllByBusinessIdAndStatus(@PathVariable("businessId") Long id,
+    public List<RequestDto> getAllByBusinessIdAndStatus(@PathVariable("businessProfileId") Long id,
                                                @PathVariable("status") String status){
         return mapper.listToResource(requestService.findAllBusinessProfileIdAndStatus(id,status));
     }
 
- */
-    @GetMapping("/user/{userId}/status/{status}/request")
+
+    @GetMapping("/userProfile/{userProfileId}/status/{status}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public List<RequestDto> getAllByUserIdAndStatus(@PathVariable("userId") Long id,
+    public List<RequestDto> getAllByUserIdAndStatus(@PathVariable("userProfileId") Long id,
                                            @PathVariable("status") String status){
         return mapper.listToResource(requestService.findAllUserProfileIdAndStatus(id,status));
     }
 
-    @PostMapping("/user/{userId}/business/{businessId}/request")
+    @PostMapping("/account/{accountId}/business/{businessId}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public RequestDto createProject(@PathVariable("userId") Long userId,
+    public RequestDto createProject(@PathVariable("accountId") Long userId,
                                     @PathVariable("businessId") Long businessId,
                                     @RequestBody CreateRequestDto createRequestDto){
         return mapper.toResource(requestService.create(userId, businessId, mapper.toModel(createRequestDto)));
