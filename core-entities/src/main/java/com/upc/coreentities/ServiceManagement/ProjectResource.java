@@ -4,6 +4,7 @@ import com.upc.coreentities.Security.Project;
 import lombok.*;
 
 import javax.persistence.*;
+import java.awt.*;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class ProjectResource {
     private Number quantity;
     private String resourceType;
     private String state;
-
+    private String image;
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "project_id", nullable = true)

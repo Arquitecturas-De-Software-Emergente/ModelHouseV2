@@ -11,6 +11,8 @@ import com.upc.coreservice.Service.Interfaces.ProjectResourceService;
 import com.upc.coreservice.Service.Interfaces.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -76,8 +79,8 @@ public class ProjectResourceController {
             throw new ResourceNotFoundException("An error occurred while loading the image");
         }
     }
-    /*
-    @PostMapping("/project_activity/upload/{id}")
+
+    @PostMapping("/project_resource/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     @Operation(tags = {"project-resource"})
     public Map<String, String> upload(@RequestParam("file") MultipartFile multipartFile, @PathVariable("id") Long id){
@@ -97,7 +100,17 @@ public class ProjectResourceController {
         return Map.of("Url", url);
     }
 
-     */
+
+    @GetMapping("/project_resource/media/{filename:.+}")
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"project-resource"})
+    public ResponseEntity<Resource> upload(@PathVariable String filename) throws IOException {
+        Resource file = storageService.loadAsResource(filename);
+        String contentType = Files.probeContentType(file.getFile().toPath());
+
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, contentType)
+                .body(file);
+    }
     @DeleteMapping("/project_resource/{id}")
     @Operation(tags = {"project-resource"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

@@ -90,7 +90,7 @@ public class ProjectController {
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
-                .path("/security/media/")
+                .path("/security/project/media/")
                 .path(path)
                 .toUriString();
         project.setImage(url);

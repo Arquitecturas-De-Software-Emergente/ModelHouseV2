@@ -87,11 +87,21 @@ public class UserProfileController {
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
-                .path("/security/media/")
+                .path("/security/user_profile/media/")
                 .path(path)
                 .toUriString();
         userProfile.setImage(url);
         userProfileService.update(id, userProfile);
         return Map.of("Url", url);
+    }
+    @GetMapping("/user_profile/media/{filename:.+}")
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"UserProfile"})
+    public ResponseEntity<Resource> upload(@PathVariable String filename) throws IOException {
+        Resource file = storageService.loadAsResource(filename);
+        String contentType = Files.probeContentType(file.getFile().toPath());
+
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, contentType)
+                .body(file);
     }
 }

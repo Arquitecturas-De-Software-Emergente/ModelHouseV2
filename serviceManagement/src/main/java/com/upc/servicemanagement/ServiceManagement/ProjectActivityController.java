@@ -65,14 +65,15 @@ public class ProjectActivityController {
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
-                .path("/service-management/media/")
+                .path("/service-management/project_resource/media/")
                 .path(path)
                 .toUriString();
         projectActivityService.update(id, projectActivity);
         return Map.of("Url", url);
     }
-    @GetMapping("/media/{filename:.+}")
+    @GetMapping("/project_activity/media/{filename:.+}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"project-activity"})
     public ResponseEntity<Resource> upload(@PathVariable String filename) throws IOException {
         Resource file = storageService.loadAsResource(filename);
         String contentType = Files.probeContentType(file.getFile().toPath());
