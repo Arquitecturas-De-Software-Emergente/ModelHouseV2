@@ -47,6 +47,7 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
             throw new ResourceNotFoundException("Business Profile is exist");
         return accountRepository.findById(accountId).map(account -> {
             businessProfile.setAccount(account);
+
             return businessProfileRepository.save(businessProfile);
         }).orElseThrow(() -> new ResourceNotFoundException("Request", accountId));
     }

@@ -1,8 +1,12 @@
 package com.upc.coreentities.Resource.BusinessProfile;
 
 import com.upc.coreentities.Resource.AccountResource;
+import com.upc.coreentities.Resource.Category.CategoryDto;
+import com.upc.coreentities.Resource.Category.CreateCategoryDto;
 import com.upc.coreentities.Resource.Review.ReviewDto;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,6 +20,7 @@ public class BusinessProfileDto {
     private String image;
     private String address;
     private String webSite;
+    private List<CategoryDto> categories;
     private String phoneNumber;
     private String foundationDate;
     private ReviewDto review;

@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @With
@@ -25,33 +27,10 @@ public class BusinessProfile {
     private String description;
     @Column(name = "foundation_date")
     private String foundationDate;
-    @OneToOne
-    @JoinColumn(name = "review_id", nullable = true)
-    private Review review;
-    @OneToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
-
-    /*
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String description;
-    private String image;
-    private String address;
-    @Column(name = "web_site")
-    private String webSite;
-    @Column(name = "phone_business")
-    private String phoneBusiness;
-    @Column(name = "registration_date")
-    private Date registrationDate;
-    @Column(name = "last_login")
-    private Date lastLogin;
-
+    @OneToMany(mappedBy = "businessProfile", cascade = CascadeType.ALL)
+    private List<Category> categories;
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
-     */
 }
