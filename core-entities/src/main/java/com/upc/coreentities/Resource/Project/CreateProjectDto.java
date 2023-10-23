@@ -21,8 +21,6 @@ public class CreateProjectDto {
     @NotNull
     @NotBlank
     private String file;
-    private CreateProjectActivityDto projectActivity;
-    private CreateProjectResourceDto projectResource;
 
     /*
     @NotNull

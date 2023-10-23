@@ -3,7 +3,6 @@ package com.upc.coreentities.Security;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -11,14 +10,16 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Review {
+public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int score;
-    private String comment;
-    private Date reviewDate;
-    @OneToOne
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+
+    @ManyToOne
+    @JoinColumn(name = "business_profile_id")
+    private BusinessProfile businessProfile;
+
+    @ManyToOne
+    @JoinColumn(name = "user_profile_id")
+    private UserProfile userProfile;
 }

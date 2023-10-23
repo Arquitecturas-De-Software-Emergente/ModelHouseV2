@@ -49,9 +49,16 @@ public class ProjectActivityController {
     @PostMapping("/proposal/{proposalId}/project_activity")
     @Operation(tags = {"project-activity"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProjectActivityDto create(@PathVariable("proposalId") Long proposalId,
+    public ProjectActivityDto createForProposal(@PathVariable("proposalId") Long proposalId,
                                             @RequestBody CreateProjectActivityDto createProjectActivityDto){
         return mapper.toResource(projectActivityService.createForProposal(proposalId, mapper.toModel(createProjectActivityDto)));
+    }
+    @PostMapping("/project/{projectId}/project_activity")
+    @Operation(tags = {"project-activity"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public ProjectActivityDto createForProject(@PathVariable("projectId") Long projectId,
+                                     @RequestBody CreateProjectActivityDto createProjectActivityDto){
+        return mapper.toResource(projectActivityService.createForProject(projectId, mapper.toModel(createProjectActivityDto)));
     }
     @PostMapping("/project_activity/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

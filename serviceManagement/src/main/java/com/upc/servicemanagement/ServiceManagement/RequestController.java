@@ -50,11 +50,11 @@ public class RequestController {
         return mapper.listToResource(requestService.findAllUserProfileIdAndStatus(id,status));
     }
 
-    @PostMapping("/account/{accountId}/business/{businessId}/request")
+    @PostMapping("/userProfile/{userProfileId}/businessProfile/{businessProfileId}/request")
     @Operation(tags = {"Request"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public RequestDto createProject(@PathVariable("accountId") Long userId,
-                                    @PathVariable("businessId") Long businessId,
+    public RequestDto createProject(@PathVariable("userProfileId") Long userId,
+                                    @PathVariable("businessProfileId") Long businessId,
                                     @RequestBody CreateRequestDto createRequestDto){
         return mapper.toResource(requestService.create(userId, businessId, mapper.toModel(createRequestDto)));
     }

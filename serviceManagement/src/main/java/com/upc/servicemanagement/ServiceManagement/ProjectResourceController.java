@@ -56,10 +56,19 @@ public class ProjectResourceController {
     @PostMapping("/proposal/{proposalId}/project_resource")
     @Operation(tags = {"project-resource"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProjectResourceDto create(@PathVariable("proposalId") Long proposalId,
+    public ProjectResourceDto createForProposal(@PathVariable("proposalId") Long proposalId,
                                     @RequestBody CreateProjectResourceDto createProjectResourceDto){
         return mapper.toResource(projectResourceService.createForProposal(proposalId, mapper.toModel(createProjectResourceDto)));
     }
+
+    @PostMapping("/project/{projectId}/project_resource")
+    @Operation(tags = {"project-resource"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public ProjectResourceDto createForProject(@PathVariable("projectId") Long projectId,
+                                                @RequestBody CreateProjectResourceDto createProjectResourceDto){
+        return mapper.toResource(projectResourceService.createForProposal(projectId, mapper.toModel(createProjectResourceDto)));
+    }
+
     @PutMapping("/project_resource/{id}")
     @Operation(tags = {"project-resource"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

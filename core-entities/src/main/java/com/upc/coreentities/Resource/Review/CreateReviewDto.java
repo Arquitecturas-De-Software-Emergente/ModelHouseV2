@@ -8,7 +8,7 @@ import lombok.*;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateReview {
+public class CreateReviewDto {
     private int score;
     private String comment;
 }
