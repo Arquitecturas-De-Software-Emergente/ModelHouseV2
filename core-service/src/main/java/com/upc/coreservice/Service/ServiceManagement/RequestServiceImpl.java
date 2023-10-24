@@ -71,6 +71,7 @@ public class RequestServiceImpl implements RequestService {
             request.setUserProfile(userProfile);
             request.setBusinessProfile(businessProfile);
             request.setRequestStatus("Pendiente");
+
             return requestRepository.save(request);
         }).orElseThrow(() -> new ResourceNotFoundException("BusinessProfile", businessId));
     }
@@ -101,6 +102,7 @@ public class RequestServiceImpl implements RequestService {
                 proposal.setDescription(change.getDescription());
                 proposal.setBusinessProfile(change.getBusinessProfile());
                 proposal.setProposalStatus("Pendiente");
+                proposal.setRequest(change);
                 proposalRepository.save(proposal);
             }
 

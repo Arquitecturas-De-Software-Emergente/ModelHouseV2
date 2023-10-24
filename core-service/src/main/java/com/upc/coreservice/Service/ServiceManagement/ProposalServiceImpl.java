@@ -96,7 +96,7 @@ return proposalRepository.findById(id).map(proposal -> {
                 project.setTitle(change.getTitle());
                 project.setDescription(change.getDescription());
                 project.setBusinessProfile(change.getBusinessProfile());
-
+                project.setProposal(change);
                 projectRepository.save(project);
             }
 
