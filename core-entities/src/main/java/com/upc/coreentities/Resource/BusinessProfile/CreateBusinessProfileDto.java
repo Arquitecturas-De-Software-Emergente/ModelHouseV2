@@ -16,19 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateBusinessProfileDto {
-    @NotNull
-    @NotBlank
     private String name;
-    @NotNull
-    @NotBlank
-    @Size(max = 1000)
     private String description;
     private String image;
-    @NotNull
-    @NotBlank
     private String address;
     private String webSite;
-    @NotNull
-    @NotBlank
     private String phoneNumber;
 }

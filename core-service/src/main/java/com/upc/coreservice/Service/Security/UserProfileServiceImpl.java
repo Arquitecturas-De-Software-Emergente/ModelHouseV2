@@ -59,9 +59,9 @@ public class UserProfileServiceImpl implements UserProfileService {
             throw new ResourceValidationException(ENTITY, violations);
         return userProfileRepository.findById(id).map(profile ->
                         userProfileRepository.save(profile.withFirstName(userProfile.getFirstName())
-                                .withImage(userProfile.getImage())
                                 .withLastName(userProfile.getLastName())
                                 .withGender(userProfile.getGender())
+                                .withAddress(userProfile.getAddress())
                                 .withPhoneNumber(userProfile.getPhoneNumber())
                                 .withLastLogin(new Date())))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));

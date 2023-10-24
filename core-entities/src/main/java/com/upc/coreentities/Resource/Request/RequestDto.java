@@ -22,17 +22,4 @@ public class RequestDto {
     private String status;
     private UserProfileDto userProfile;
     private BusinessProfileDto businessProfile;
-
-    /*
-    private Long id;
-    private Date requestAt;
-    private String status;
-    private String description;
-    private Boolean accepted;
-    private Date acceptedAt;
-    private Date updateAt;
-    private UserProfileDto userProfile;
-    private BusinessProfileDto businessProfile;
-
-     */
 }

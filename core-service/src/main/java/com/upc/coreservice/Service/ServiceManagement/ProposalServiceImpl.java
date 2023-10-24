@@ -39,7 +39,7 @@ public class ProposalServiceImpl implements ProposalService {
 
     @Override
     public Proposal findAllRequestId(Long id) {
-        return proposalRepository.findByRequestId(id);
+        return proposalRepository.findProposalById(id);
     }
 
     @Override

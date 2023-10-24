@@ -48,23 +48,6 @@ public class ProposalController {
         return mapper.toResource(proposalService.findAllRequestId(id));
     }
 
-    /*
-    @PostMapping("/request/{requestId}/proposal")
-    @Operation(tags = {"Proposal"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProposalDto createProject(@PathVariable("requestId") Long requestId,
-                                    @RequestBody CreateProposalDto createProposalDto){
-        Project resource = new Project();
-        Proposal proposal = proposalService.create(requestId, mapper.toModel(createProposalDto));
-        if(proposal != null){
-            Project project = projectService.createProject(proposal.getRequest().getUserProfile().getId(), resource, proposal);
-            if(project != null){
-                return mapper.toResource(proposal);
-            }
-        }
-        return null;
-    }
-    */
     @PutMapping("/proposal/{id}")
     @Operation(tags = {"Proposal"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

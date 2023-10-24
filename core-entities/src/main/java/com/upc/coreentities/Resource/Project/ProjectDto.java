@@ -2,6 +2,8 @@ package com.upc.coreentities.Resource.Project;
 
 import com.upc.coreentities.Resource.ProjectActivity.ProjectActivityDto;
 import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
+import com.upc.coreentities.Resource.Proposal.ProposalDto;
+
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -21,4 +23,5 @@ public class ProjectDto {
     private List<ProjectActivityDto> projectActivities;
     private List<ProjectResourceDto> projectResources;
 
+    private ProposalDto proposal;
 }

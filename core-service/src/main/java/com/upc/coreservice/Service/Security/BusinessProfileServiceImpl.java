@@ -60,7 +60,6 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
         return businessProfileRepository.findById(id).map(profile ->
                         businessProfileRepository.save(profile.withName(businessProfile.getName())
                                 .withDescription(businessProfile.getDescription())
-                                .withImage(businessProfile.getImage())
                                 .withAddress(businessProfile.getAddress())
                                 .withWebSite(businessProfile.getWebSite())))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));

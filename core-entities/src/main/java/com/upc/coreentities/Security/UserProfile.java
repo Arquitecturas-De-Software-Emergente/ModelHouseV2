@@ -17,6 +17,7 @@ public class UserProfile {
     private Long id;
     @Column(name = "first_name")
     private String firstName;
+    private String address;
     private String image;
     @Column(name = "last_name")
     private String lastName;

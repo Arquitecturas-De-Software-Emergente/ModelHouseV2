@@ -46,11 +46,6 @@ public class ProjectController {
     public List<ProjectDto> getAll(){
         return mapper.listToResource(projectService.getAll());
     }
-    @GetMapping("/business_profile/{businessId}/project")
-    @Operation(tags = {"Project"})
-    public List<ProjectDto> getAllByBusinessId(@PathVariable("businessId") Long id){
-        return mapper.listToResource(projectService.findAllByBusinessProfileId(id));
-    }
     @GetMapping("/project/{id}/profile")
     @Operation(tags = {"Project"})
     public ProjectDto getById(@PathVariable("id") Long id){

@@ -13,13 +13,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserProfileDto {
-    @NotNull
-    @NotBlank
     private String firstName;
     private String lastName;
     private String gender;
-    @NotNull
-    @NotBlank
     private String phoneNumber;
     private String address;
 }

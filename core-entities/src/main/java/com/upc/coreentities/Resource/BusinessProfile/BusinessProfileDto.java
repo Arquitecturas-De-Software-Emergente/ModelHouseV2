@@ -24,5 +24,4 @@ public class BusinessProfileDto {
     private String phoneNumber;
     private String foundationDate;
     private ReviewDto review;
-    private AccountResource account;
 }

@@ -76,7 +76,7 @@ public class BusinessProfileController {
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
-                .path("/security/media/")
+                .path("/security/business_profile/media/")
                 .path(path)
                 .toUriString();
         businessProfile.setImage(url);

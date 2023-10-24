@@ -19,5 +19,4 @@ public class UserProfileDto {
     private String gender;
     private String phoneNumber;
     private String address;
-    private AccountResource user;
 }
