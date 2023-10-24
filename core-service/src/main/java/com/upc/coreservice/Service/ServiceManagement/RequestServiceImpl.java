@@ -42,6 +42,16 @@ public class RequestServiceImpl implements RequestService {
         return requestRepository.findAll();
     }
 
+    @Override
+    public List<Request> findAllBusinessProfileId(Long id) {
+        return requestRepository.findAllByBusinessProfileId(id);
+    }
+
+    @Override
+    public List<Request> findAllUserProfileId(Long id) {
+        return requestRepository.findAllByBusinessProfileId(id);
+    }
+
 
     @Override
     public List<Request> findAllBusinessProfileIdAndStatus(Long id, String status) {

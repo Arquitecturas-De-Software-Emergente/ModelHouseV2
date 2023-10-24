@@ -17,5 +17,4 @@ public class ProjectActivityDto {
     private String image;
     private Date startedAt;
     private Date completedAt;
-    private ProposalDto proposal;
 }

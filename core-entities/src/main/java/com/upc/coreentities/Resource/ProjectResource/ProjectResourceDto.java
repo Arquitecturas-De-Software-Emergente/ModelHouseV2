@@ -10,8 +10,9 @@ import lombok.*;
 @AllArgsConstructor
 public class ProjectResourceDto {
     private Long Id;
-    private String description;
     private Number quantity;
+    private String resourceType;
     private String state;
-    private ProposalDto proposal;
+    private String image;
+
 }

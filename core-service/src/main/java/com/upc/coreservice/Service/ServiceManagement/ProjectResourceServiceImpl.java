@@ -40,15 +40,46 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     }
 
     @Override
-    public ProjectResource createForProposal(Long projectId, ProjectResource projectResource) {
-        return null;
+    public ProjectResource createForProposal(Long proposalId, ProjectResource projectResource) {
+        Set<ConstraintViolation<ProjectResource>> violations = validator.validate(projectResource);
+        if (!violations.isEmpty()) {
+            throw new ResourceValidationException(ENTITY, violations);
+        }
+
+        Proposal proposal = proposalRepository.findProposalById(proposalId);
+
+        if (proposal != null) {
+            projectResource.setProposal(proposal);
+            proposal.addProjectResource(projectResource);
+            projectResourceRepository.save(projectResource);
+            proposalRepository.save(proposal);
+
+            return projectResource;
+        } else {
+            throw new ResourceNotFoundException("Proposal", proposalId);
+        }
     }
 
     @Override
     public ProjectResource createForProject(Long projectId, ProjectResource projectResource) {
-        return null;
-    }
+        Set<ConstraintViolation<ProjectResource>> violations = validator.validate(projectResource);
+        if (!violations.isEmpty()) {
+            throw new ResourceValidationException(ENTITY, violations);
+        }
 
+        Optional<Project> optionalProject = projectRepository.findById(projectId);
+
+        if (optionalProject.isPresent()) {
+            Project project = optionalProject.get();
+           // project.addProjectResource(projectResource);
+            //projectResource.setProject(project);
+            projectRepository.save(project);
+
+            return projectResourceRepository.save(projectResource);
+        } else {
+            throw new ResourceNotFoundException("Project", projectId);
+        }
+    }
 /*
     @Override
     public ProjectResource create(Long projectId, ProjectResource projectResource) {

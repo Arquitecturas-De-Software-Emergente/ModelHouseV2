@@ -22,16 +22,4 @@ public class CreateProjectDto {
     @NotBlank
     private String file;
 
-    /*
-    @NotNull
-    @NotBlank
-    private String title;
-    @NotNull
-    @NotBlank
-    private String description;
-    @NotNull
-    @NotBlank
-    private String image;
-
-     */
 }

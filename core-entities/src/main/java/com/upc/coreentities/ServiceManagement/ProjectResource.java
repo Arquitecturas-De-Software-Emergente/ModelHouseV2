@@ -20,29 +20,16 @@ public class ProjectResource {
     private String resourceType;
     private String state;
     private String image;
-
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "project_id", nullable = true)
-    private Project project;
-
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "proposal_id", nullable = true)
-    private Proposal proposal;
-
+    private String projectId;
 
     /*
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String description;
-    private String image;
-    private Number quantity;
-    private String state;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "project_id")
     private Project project;
+*/
 
-     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "proposal_id")
+    private Proposal proposal;
+
 }

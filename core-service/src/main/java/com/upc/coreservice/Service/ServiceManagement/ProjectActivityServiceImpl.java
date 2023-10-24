@@ -50,15 +50,18 @@ public class ProjectActivityServiceImpl implements ProjectActivityService {
         Proposal proposal = proposalRepository.findProposalById(proposalId);
 
         if (proposal != null) {
-
             projectActivity.setProposal(proposal);
+            proposal.addProjectActivity(projectActivity);
+
             projectActivityRepository.save(projectActivity);
             proposalRepository.save(proposal);
+
             return projectActivity;
         } else {
             throw new ResourceNotFoundException("Proposal", proposalId);
         }
     }
+
 
 
 
@@ -73,7 +76,10 @@ public class ProjectActivityServiceImpl implements ProjectActivityService {
 
         if (optionalProject.isPresent()) {
             Project project = optionalProject.get();
-            projectActivity.setProject(project);
+          //  project.addProjectActivity(projectActivity);
+            //projectActivity.setProject(project);
+            projectRepository.save(project);
+
             return projectActivityRepository.save(projectActivity);
         } else {
             throw new ResourceNotFoundException("Project", projectId);

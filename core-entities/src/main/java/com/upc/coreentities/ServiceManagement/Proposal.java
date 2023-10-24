@@ -7,6 +7,7 @@ import com.upc.coreentities.Security.Project;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,32 +44,19 @@ public class Proposal {
     private Request request;
 
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
-    private List<ProjectActivity> projectActivity;
+    private List<ProjectActivity> projectActivities = new ArrayList<>();
 
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
-    private List<ProjectResource> projectResource;
+    private List<ProjectResource> projectResources = new ArrayList<>();
 
+    public void addProjectActivity(ProjectActivity projectActivity) {
+        projectActivities.add(projectActivity);
+        projectActivity.setProposal(this);
+    }
 
-    /*
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "proposal_date")
-    private Date proposalDate;
-    private String description;
-    private Float price;
-    private String status;
-    @Column(name = "is_response")
-    private Boolean isResponse;
-    @Column(name = "response_date")
-    private Date responseDate;
+    public void addProjectResource(ProjectResource projectResource) {
+        projectResources.add(projectResource);
+        projectResource.setProposal(this);
+    }
 
-    @OneToOne
-    @JoinColumn(name = "request_id")
-    private Request request;
-
-    @OneToOne(mappedBy = "proposal", cascade = CascadeType.ALL)
-    private Project project;
-
-     */
 }

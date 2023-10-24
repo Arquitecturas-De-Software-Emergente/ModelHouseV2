@@ -66,7 +66,7 @@ public class ProjectResourceController {
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public ProjectResourceDto createForProject(@PathVariable("projectId") Long projectId,
                                                 @RequestBody CreateProjectResourceDto createProjectResourceDto){
-        return mapper.toResource(projectResourceService.createForProposal(projectId, mapper.toModel(createProjectResourceDto)));
+        return mapper.toResource(projectResourceService.createForProject(projectId, mapper.toModel(createProjectResourceDto)));
     }
 
     @PutMapping("/project_resource/{id}")

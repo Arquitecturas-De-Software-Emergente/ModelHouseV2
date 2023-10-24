@@ -32,6 +32,19 @@ public class RequestController {
         return mapper.listToResource(requestService.getAll());
     }
 
+    @GetMapping("/request/user/{userProfileId}")
+    @Operation(tags = {"Request"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public List<RequestDto> getAllByUserId(@PathVariable("userProfileId") Long id){
+        return mapper.listToResource(requestService.findAllUserProfileId(id));
+    }
+
+    @GetMapping("/request/business/{businessProfileId}")
+    @Operation(tags = {"Request"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public List<RequestDto> getAllByBusinessId(@PathVariable("businessProfileId") Long id){
+        return mapper.listToResource(requestService.findAllBusinessProfileId(id));
+    }
 
     @GetMapping("/businessProfile/{businessProfileId}/status/{status}/request")
     @Operation(tags = {"Request"})

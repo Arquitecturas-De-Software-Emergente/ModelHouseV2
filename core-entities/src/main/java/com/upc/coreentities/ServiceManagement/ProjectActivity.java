@@ -19,33 +19,17 @@ public class ProjectActivity {
     private String description;
     private String status;
     private Date startedAt;
+    private String projectId;
 
-
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "project_id", nullable = true)
+/*
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
     private Project project;
+*/
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "proposal_id", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "proposal_id")
     private Proposal proposal;
 
-    /*
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String image;
-    private String description;
-    private String status;
-    private Date startedAt;
-    private Date completedAt;
-    @Column(name = "completion_percent")
-    private Float completionPercent;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
-
-     */
 }

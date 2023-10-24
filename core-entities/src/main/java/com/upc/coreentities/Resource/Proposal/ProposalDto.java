@@ -1,7 +1,9 @@
 package com.upc.coreentities.Resource.Proposal;
 
 import com.upc.coreentities.Resource.ProjectActivity.CreateProjectActivityDto;
+import com.upc.coreentities.Resource.ProjectActivity.ProjectActivityDto;
 import com.upc.coreentities.Resource.ProjectResource.CreateProjectResourceDto;
+import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
 import com.upc.coreentities.Resource.Request.RequestDto;
 import lombok.*;
 
@@ -17,11 +19,7 @@ public class ProposalDto {
     private Long id;
     private Date proposalDate;
     private String description;
-   // private Float price;
     private String status;
-    private List<CreateProjectActivityDto> projectActivities;
-    private List<CreateProjectResourceDto> projectResource;
-  //  private Boolean isResponse;
-  //  private Date responseDate;
-   // private RequestDto request;
+    private List<ProjectActivityDto> projectActivities;
+    private List<ProjectResourceDto> projectResources;
 }

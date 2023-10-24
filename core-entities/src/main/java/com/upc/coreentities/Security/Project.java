@@ -32,9 +32,6 @@ public class Project {
     private Review review;
     private int reviewScore;
     private String reviewComment;
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    private List<ProjectActivity> projectActivity;
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    private List<ProjectResource> projectResource;
+
 
 }

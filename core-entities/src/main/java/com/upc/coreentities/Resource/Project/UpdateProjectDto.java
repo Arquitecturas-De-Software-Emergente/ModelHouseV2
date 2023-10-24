@@ -15,6 +15,4 @@ public class UpdateProjectDto {
     private String title;
     private String description;
     private String image;
-    private List<CreateProjectActivityDto> projectActivities;
-    private List<CreateProjectResourceDto> projectResource;
 }

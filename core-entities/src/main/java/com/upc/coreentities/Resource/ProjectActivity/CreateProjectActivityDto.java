@@ -17,14 +17,4 @@ public class CreateProjectActivityDto {
     @NotBlank
     private String description;
 
-    /*
-    private String status;
-    @NotNull
-    @NotBlank
-    private String name;
-    @NotNull
-    @NotBlank
-    private String description;
-
-     */
 }

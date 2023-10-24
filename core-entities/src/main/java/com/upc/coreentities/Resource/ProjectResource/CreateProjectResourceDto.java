@@ -11,12 +11,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateProjectResourceDto {
-    @NotNull
-    @NotBlank
+
     private String description;
-    @NotNull
-    @NotBlank
     private Number quantity;
-    private String image;
+    private String resourceType;
     private String state;
+    private String image;
 }
