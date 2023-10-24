@@ -18,7 +18,7 @@ public class ProjectResource {
     private Long id;
     private Number quantity;
     private String resourceType;
-    private String state;
+    private Boolean isChecked;
     private String image;
     private String projectId;
 

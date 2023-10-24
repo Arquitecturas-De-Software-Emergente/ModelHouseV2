@@ -11,6 +11,5 @@ import org.springframework.web.multipart.MultipartFile;
 public class UpdateProjectResourceDto {
     private String description;
     private Number quantity;
-    private MultipartFile image;
-    private String state;
+    private Boolean isChecked;
 }

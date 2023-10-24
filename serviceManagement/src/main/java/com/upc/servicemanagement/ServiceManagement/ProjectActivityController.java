@@ -2,6 +2,9 @@ package com.upc.servicemanagement.ServiceManagement;
 
 import com.upc.coreentities.Resource.ProjectActivity.CreateProjectActivityDto;
 import com.upc.coreentities.Resource.ProjectActivity.ProjectActivityDto;
+import com.upc.coreentities.Resource.ProjectActivity.UpdateProjectActivityDto;
+import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
+import com.upc.coreentities.Resource.ProjectResource.UpdateProjectResourceDto;
 import com.upc.coreentities.ServiceManagement.ProjectActivity;
 import com.upc.coreservice.Mapping.ProjectActivityMapper;
 import com.upc.coreservice.Service.Interfaces.ProjectActivityService;
@@ -78,9 +81,15 @@ public class ProjectActivityController {
         projectActivityService.update(id, projectActivity);
         return Map.of("Url", url);
     }
+    @PutMapping("/project_activity/{id}")
+    @Operation(tags = {"project-resource"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public ProjectActivityDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectActivityDto resource){
+        return mapper.toResource(projectActivityService.update(id, mapper.toModel(resource)));
+    }
     @GetMapping("/project_activity/media/{filename:.+}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    @Operation(tags = {"project-activity"})
+    @Operation(tags = {"project-resource"})
     public ResponseEntity<Resource> upload(@PathVariable String filename) throws IOException {
         Resource file = storageService.loadAsResource(filename);
         String contentType = Files.probeContentType(file.getFile().toPath());

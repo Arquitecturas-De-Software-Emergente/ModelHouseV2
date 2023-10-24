@@ -134,7 +134,7 @@ public class ProjectActivityServiceImpl implements ProjectActivityService {
             throw new ResourceValidationException(ENTITY, violations);
         return projectActivityRepository.findById(id).map(projectResource ->
                         projectActivityRepository.save(projectResource.withDescription(projectActivity.getDescription())
-                                .withStatus(projectActivity.getStatus())))
+                                .withIsChecked(projectActivity.getIsChecked())))
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY , id));
 
     }

@@ -17,7 +17,7 @@ public class ProjectActivity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private String status;
+    private Boolean isChecked;
     private Date startedAt;
     private String projectId;
 

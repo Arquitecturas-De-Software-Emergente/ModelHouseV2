@@ -73,20 +73,7 @@ public class ProjectResourceController {
     @Operation(tags = {"project-resource"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public ProjectResourceDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectResourceDto resource){
-        try{
-            String fileName = UUID.randomUUID().toString() + "-" + resource.getImage().getOriginalFilename();
-            Path filePath = Paths.get(uploadDir, fileName);
-
-            resource.getImage().transferTo(filePath);
-            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path(uploadDir)
-                    .path(fileName)
-                    .toUriString();
-            ProjectResource projectResource = mapper.toModel(resource);
-            return mapper.toResource(projectResourceService.update(id, mapper.toModel(resource)));
-        }catch (Exception e){
-            throw new ResourceNotFoundException("An error occurred while loading the image");
-        }
+        return mapper.toResource(projectResourceService.update(id, mapper.toModel(resource)));
     }
 
     @PostMapping("/project_resource/upload/{id}")

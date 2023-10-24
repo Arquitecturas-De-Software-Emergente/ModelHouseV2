@@ -9,8 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateProjectActivityDto {
-    private String status;
-    private MultipartFile image;
-    //private String name;
     private String description;
+    private Boolean isChecked;
 }

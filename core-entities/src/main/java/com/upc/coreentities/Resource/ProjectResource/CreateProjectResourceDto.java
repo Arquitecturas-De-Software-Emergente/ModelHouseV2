@@ -15,6 +15,5 @@ public class CreateProjectResourceDto {
     private String description;
     private Number quantity;
     private String resourceType;
-    private String state;
-    private String image;
+    private Boolean isChecked;
 }

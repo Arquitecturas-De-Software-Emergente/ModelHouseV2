@@ -9,10 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectResourceDto {
-    private Long Id;
+    private Long id;
     private Number quantity;
-    private String resourceType;
-    private String state;
     private String image;
+    private String resourceType;
+    private Boolean isChecked;
 
 }

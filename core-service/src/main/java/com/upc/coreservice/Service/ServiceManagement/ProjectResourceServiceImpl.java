@@ -127,7 +127,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
         return projectResourceRepository.findById(id).map(project ->
                         projectResourceRepository.save(project
                                 .withQuantity(projectResource.getQuantity())
-                                .withState(projectResource.getState())))
+                                .withIsChecked(projectResource.getIsChecked())))
                 .orElseThrow(()-> new ResourceNotFoundException(ENTITY , id));
     }
 }

@@ -1,8 +1,9 @@
 package com.upc.coreentities.Resource.Proposal;
 
-import com.upc.coreentities.Resource.ProjectActivity.CreateProjectActivityDto;
-import com.upc.coreentities.Resource.ProjectResource.CreateProjectResourceDto;
+import com.upc.coreentities.Resource.ProjectActivity.ProjectActivityDto;
 
+import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
+import com.upc.coreentities.Resource.Request.RequestDto;
 import lombok.*;
 
 import java.util.Date;

@@ -11,10 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateProjectActivityDto {
-    private String status;
-    private String image;
-    @NotNull
-    @NotBlank
     private String description;
+    private Boolean isChecked;
 
 }
