@@ -10,6 +10,7 @@ import com.upc.coreservice.Service.Interfaces.StorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -64,6 +65,13 @@ public class BusinessProfileController {
     public BusinessProfileDto createBusinessProfile(@PathVariable("accountId") Long userId,@RequestBody CreateBusinessProfileDto resource){
         return mapper.toResource(businessProfileService.create(userId, mapper.toModel(resource)));
     }
+    @PostMapping("/business_profile/{filter}/filter")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @Operation(tags = {"BusinessProfile"})
+    public List<BusinessProfileDto> findByFilter(@PathVariable("filter") String filter){
+        return mapper.listToResource(businessProfileService.findByFilter(filter));
+    }
+
     @PostMapping("/business_profile/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     @Operation(tags = {"BusinessProfile"})

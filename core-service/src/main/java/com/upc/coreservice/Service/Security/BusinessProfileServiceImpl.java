@@ -28,6 +28,11 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
     }
 
     @Override
+    public List<BusinessProfile> findByFilter(String filter) {
+        return businessProfileRepository.getFilterBusinessProfile(filter);
+    }
+
+    @Override
     public BusinessProfile findByAccountId(Long accountId) {
         return businessProfileRepository.findBusinessProfileByAccount_Id(accountId);
     }
