@@ -1,5 +1,6 @@
 package com.upc.coreservice.Service.ServiceManagement;
 
+import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
 import com.upc.coreentities.Security.Project;
 import com.upc.coreentities.ServiceManagement.ProjectActivity;
 import com.upc.coreentities.ServiceManagement.ProjectResource;
@@ -120,14 +121,14 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     }
 
     @Override
-    public ProjectResource update(Long id, ProjectResource projectResource) {
-        Set<ConstraintViolation<ProjectResource>> violations = validator.validate(projectResource);
-        if(!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
-        return projectResourceRepository.findById(id).map(project ->
-                        projectResourceRepository.save(project
-                                .withQuantity(projectResource.getQuantity())
-                                .withIsChecked(projectResource.getIsChecked())))
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY , id));
+    public ProjectResource update(Long id, ProjectResourceDto projectResource) {
+        ProjectResource optionalProject = projectResourceRepository.getById(id);
+        optionalProject.setQuantity(projectResource.getQuantity());
+        optionalProject.setDescription(projectResource.getDescription());
+        optionalProject.setIsChecked(projectResource.getIsChecked());
+        System.out.println(optionalProject);
+        System.out.println(optionalProject.getQuantity());
+        this.projectResourceRepository.save(optionalProject);
+        return optionalProject;
     }
 }

@@ -1,5 +1,8 @@
 package com.upc.coreservice.Service.Security;
 
+import com.mysql.cj.conf.PropertyKey;
+import com.upc.coreentities.Resource.Project.ProjectDto;
+import com.upc.coreentities.Resource.Project.UpdateProjectDto;
 import com.upc.coreentities.Security.Project;
 import com.upc.coreentities.Security.UserProfile;
 import com.upc.coreentities.ServiceManagement.Proposal;
@@ -7,6 +10,10 @@ import com.upc.coreentities.Util.Shared.exception.ResourceNotFoundException;
 import com.upc.coreentities.Util.Shared.exception.ResourceValidationException;
 import com.upc.coreservice.Repository.Security.BusinessProfileRepository;
 import com.upc.coreservice.Repository.Security.ProjectRepository;
+import com.upc.coreservice.Repository.ServiceManagement.ProjectActivityRepository;
+import com.upc.coreservice.Repository.ServiceManagement.ProjectResourceRepository;
+import com.upc.coreservice.Service.Interfaces.ProjectActivityService;
+import com.upc.coreservice.Service.Interfaces.ProjectResourceService;
 import com.upc.coreservice.Service.Interfaces.ProjectService;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -23,6 +30,8 @@ import java.util.Set;
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
     private final BusinessProfileRepository businessProfileRepository;
+    private final ProjectResourceService projectResourceService;
+    private final ProjectActivityService projectActivityService;
     private final Validator validator;
     private static final String ENTITY = "Project";
 
@@ -66,15 +75,21 @@ public class ProjectServiceImpl implements ProjectService {
         }).orElseThrow(() -> new ResourceNotFoundException("BusinessProfile", businessId));
     }
     @Override
-    public Project updateProject(Long id, Project project) {
-        Set<ConstraintViolation<Project>> violations = validator.validate(project);
+    public UpdateProjectDto updateProject(Long id, UpdateProjectDto project) {
+        Set<ConstraintViolation<UpdateProjectDto>> violations = validator.validate(project);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
-        return projectRepository.findById(id).map(change ->
-                projectRepository.save(change.withTitle(project.getTitle())
-                        .withDescription(project.getDescription())
-                        .withImage(project.getImage())))
-                .orElseThrow(()-> new ResourceNotFoundException(ENTITY , id));
+        try{
+            Project optionalProject = projectRepository.getById(id);
+            optionalProject.setTitle(project.getTitle());
+            optionalProject.setDescription(project.getDescription());
+            project.getProjectResourceDtos().forEach(resource -> projectResourceService.update(resource.getId(), resource));
+            project.getProjectActivityDtos().forEach(activity -> projectActivityService.update(activity.getId(), activity));
+            this.projectRepository.save(optionalProject);
+            return project;
+        }catch (Exception e){
+            throw new ResourceNotFoundException(ENTITY, id);
+        }
     }
 
     @Override

@@ -16,17 +16,11 @@ public class ProjectResource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Number quantity;
-    private String resourceType;
+    private Integer quantity;
     private Boolean isChecked;
     private String image;
     private String projectId;
-
-    /*
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "project_id")
-    private Project project;
-*/
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proposal_id")

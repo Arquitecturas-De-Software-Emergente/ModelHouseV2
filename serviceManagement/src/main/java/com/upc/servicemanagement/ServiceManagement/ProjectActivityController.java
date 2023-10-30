@@ -78,18 +78,18 @@ public class ProjectActivityController {
                 .path("/service-management/project_resource/media/")
                 .path(path)
                 .toUriString();
-        projectActivityService.update(id, projectActivity);
+        projectActivityService.update(id, mapper.toModel(projectActivity));
         return Map.of("Url", url);
     }
-    @PutMapping("/project_activity/{id}")
-    @Operation(tags = {"project-resource"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProjectActivityDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectActivityDto resource){
-        return mapper.toResource(projectActivityService.update(id, mapper.toModel(resource)));
-    }
+    //@PutMapping("/project_activity/{id}")
+   //@Operation(tags = {"project-activity"})
+   //@PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+   //public ProjectActivityDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectActivityDto resource){
+   //    return mapper.toResource(projectActivityService.update(id, mapper.toModel(resource)));
+   //}
     @GetMapping("/project_activity/media/{filename:.+}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    @Operation(tags = {"project-resource"})
+    @Operation(tags = {"project-activity"})
     public ResponseEntity<Resource> upload(@PathVariable String filename) throws IOException {
         Resource file = storageService.loadAsResource(filename);
         String contentType = Files.probeContentType(file.getFile().toPath());

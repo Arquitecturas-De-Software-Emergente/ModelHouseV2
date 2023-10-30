@@ -56,21 +56,12 @@ public class ProjectController {
     public ProjectDto getById(@PathVariable("id") Long id){
         return mapper.toResource(projectService.findById(id));
     }
-    /*
-    @PostMapping("/business_profile/{businessId}/project")
-    @Operation(tags = {"Project"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProjectDto createProject(@PathVariable("businessId") Long businessId, @RequestBody CreateProjectDto createProjectDto){
-        return mapper.toResource(projectService.createProject(businessId, mapper.toModel(createProjectDto)));
-    }
     @PutMapping("/project/{id}")
     @Operation(tags = {"Project"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProjectDto updateProject(@PathVariable("id") Long id, @RequestBody UpdateProjectDto updateBusinessProfileDto){
-        return mapper.toResource(projectService.updateProject(id, mapper.toModel(updateBusinessProfileDto)));
+    public UpdateProjectDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectDto projectDto){
+        return this.projectService.updateProject(id, projectDto);
     }
 
-     */
     @DeleteMapping("/project/{id}")
     @Operation(tags = {"Project"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

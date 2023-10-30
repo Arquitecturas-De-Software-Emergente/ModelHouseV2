@@ -69,12 +69,12 @@ public class ProjectResourceController {
         return mapper.toResource(projectResourceService.createForProject(projectId, mapper.toModel(createProjectResourceDto)));
     }
 
-    @PutMapping("/project_resource/{id}")
-    @Operation(tags = {"project-resource"})
-    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public ProjectResourceDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectResourceDto resource){
-        return mapper.toResource(projectResourceService.update(id, mapper.toModel(resource)));
-    }
+    //@PutMapping("/project_resource/{id}")
+    //@Operation(tags = {"project-resource"})
+    //@PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    //public ProjectResourceDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectResourceDto resource){
+    //    return mapper.toResource(projectResourceService.update(id, mapper.toModel(resource)));
+    //}
 
     @PostMapping("/project_resource/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -92,7 +92,7 @@ public class ProjectResourceController {
                 .path(path)
                 .toUriString();
         projectResource.setImage(url);
-        projectResourceService.update(id, projectResource);
+        projectResourceService.update(id, mapper.toModel(projectResource));
         return Map.of("Url", url);
     }
 

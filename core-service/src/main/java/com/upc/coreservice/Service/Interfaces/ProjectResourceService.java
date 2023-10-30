@@ -1,5 +1,7 @@
 package com.upc.coreservice.Service.Interfaces;
 
+import com.upc.coreentities.Resource.ProjectResource.ProjectResourceDto;
+import com.upc.coreentities.Resource.ProjectResource.UpdateProjectResourceDto;
 import com.upc.coreentities.ServiceManagement.ProjectActivity;
 import com.upc.coreentities.ServiceManagement.ProjectResource;
 import org.springframework.http.ResponseEntity;
@@ -13,5 +15,5 @@ public interface ProjectResourceService {
     ProjectResource createForProposal(Long projectId, ProjectResource projectResource);
     ProjectResource createForProject(Long projectId, ProjectResource projectResource);
     ResponseEntity<?> delete(Long id);
-    ProjectResource update(Long id, ProjectResource projectResource);
+    ProjectResource update(Long id, ProjectResourceDto projectResource);
 }

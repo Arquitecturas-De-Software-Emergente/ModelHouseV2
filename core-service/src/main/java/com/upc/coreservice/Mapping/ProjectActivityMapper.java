@@ -30,7 +30,9 @@ public class ProjectActivityMapper implements Serializable {
     public ProjectActivity toModel(CreateProjectActivityDto resource) {
         return mapper.map(resource, ProjectActivity.class);
     }
-
+    public ProjectActivityDto toModel(ProjectActivity resource) {
+        return mapper.map(resource, ProjectActivityDto.class);
+    }
     public ProjectActivity toModel(UpdateProjectActivityDto resource) {
         return mapper.map(resource, ProjectActivity.class);
     }

@@ -18,14 +18,4 @@ public class UpdateProposalDto {
     private String title;
     private String description;
     private String file;
-
-    /*
-    private Date proposalDate;
-    private String description;
- //   private Float price;
-    private String status;
-    private Boolean isResponse;
-    private Date responseDate;
-
-     */
 }

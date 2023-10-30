@@ -17,6 +17,7 @@ import java.util.List;
 public class ProposalDto {
     private Long id;
     private Date proposalDate;
+    private String title;
     private String description;
     private String status;
     private List<ProjectActivityDto> projectActivities;
