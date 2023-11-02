@@ -21,17 +21,15 @@ public class Project {
     private String title;
     private String description;
     private String image;
+    private String status;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "business_profile_id", nullable = false)
     private BusinessProfile businessProfile;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "proposal_id", nullable = false)
     private Proposal proposal;
-    @OneToOne
-    @JoinColumn(name = "review_id", nullable = true)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "review_id", nullable = false)
     private Review review;
-    private int reviewScore;
-    private String reviewComment;
-
-
 }

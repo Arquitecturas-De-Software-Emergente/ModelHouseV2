@@ -48,7 +48,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         if (favoriteRepository.existsByUserProfileIdAndBusinessProfileId(userProfileId, businessProfileId)) {
             throw new FavoriteAlreadyExistsException("This business is already in your favorites");
         }
-
+        favorite.setActive(true);
         favorite.setUserProfile(userProfile);
         favorite.setBusinessProfile(businessProfile);
         favoriteRepository.save(favorite);

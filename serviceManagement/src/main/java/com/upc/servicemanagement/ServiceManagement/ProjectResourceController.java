@@ -68,14 +68,6 @@ public class ProjectResourceController {
                                                 @RequestBody CreateProjectResourceDto createProjectResourceDto){
         return mapper.toResource(projectResourceService.createForProject(projectId, mapper.toModel(createProjectResourceDto)));
     }
-
-    //@PutMapping("/project_resource/{id}")
-    //@Operation(tags = {"project-resource"})
-    //@PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    //public ProjectResourceDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectResourceDto resource){
-    //    return mapper.toResource(projectResourceService.update(id, mapper.toModel(resource)));
-    //}
-
     @PostMapping("/project_resource/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     @Operation(tags = {"project-resource"})

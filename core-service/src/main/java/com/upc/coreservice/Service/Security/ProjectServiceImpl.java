@@ -67,7 +67,7 @@ public class ProjectServiceImpl implements ProjectService {
         Set<ConstraintViolation<Project>> violations = validator.validate(project);
         if(!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
-
+        project.setStatus("Proceso");
         return businessProfileRepository.findById(businessId).map(businessProfile -> {
             project.setBusinessProfile(businessProfile);
             project.setProposal(null);
@@ -109,5 +109,20 @@ public class ProjectServiceImpl implements ProjectService {
         return projectRepository.findById(id).map(project1 ->
                         projectRepository.save(project1.withImage(project1.getImage())))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
+    }
+
+    @Override
+    public Project changeStatus(Long id, String status) {
+        Project project = projectRepository.getById(id);
+        if(project == null)
+            throw new ResourceNotFoundException(ENTITY, id);
+
+        try{
+            project.setStatus(status);
+            projectRepository.save(project);
+            return project;
+        }catch (Exception e){
+            throw new ResourceNotFoundException("Ocurrió un error al actualizar", id);
+        }
     }
 }
