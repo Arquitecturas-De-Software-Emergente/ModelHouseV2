@@ -62,13 +62,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
                 throw new ResourceNotFoundException("This account doesn't exist");
             return subscriptionRepository.save(subscription);
         }).orElseThrow(() -> new ResourceNotFoundException("Account", accountId));
-
     }
 
     @Override
     public Subscription update(Long id, Subscription subscription) {
-
-
 
         return null;
     }
