@@ -23,6 +23,9 @@ public class Account extends AuditModel {
     @Column(name = "is_active")
     private Boolean isActive;
 
+    @Column(name = "device_id")
+    private String deviceId;
+
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
     private BusinessProfile businessProfile;
 

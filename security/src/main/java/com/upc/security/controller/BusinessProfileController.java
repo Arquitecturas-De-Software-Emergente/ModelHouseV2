@@ -100,4 +100,11 @@ public class BusinessProfileController {
     public BusinessProfileDto updateBusinessProfile(@PathVariable("id") Long id, @RequestBody UpdateBusinessProfileDto updateBusinessProfileDto){
         return mapper.toResource(businessProfileService.update(id, mapper.toModel(updateBusinessProfileDto)));
     }
+
+    @GetMapping("/business_profile/{id}/deviceId")
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"BusinessProfile"})
+    public String getDeviceIdByBusinessProfile(@PathVariable("id") Long id){
+        return businessProfileService.getDeviceId(id);
+    }
 }

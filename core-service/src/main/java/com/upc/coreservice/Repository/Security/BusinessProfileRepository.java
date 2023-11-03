@@ -20,4 +20,9 @@ public interface BusinessProfileRepository extends JpaRepository<BusinessProfile
     List<BusinessProfile> getFilterBusinessProfile(
             @Param("filter") String filter
     );
+
+    @Query(value = "SELECT a.deviceId " +
+            "from Account a right join BusinessProfile bp " +
+            "ON a.id = :accountId")
+    String getDeviceIdByBusinessProfile(Long accountId);
 }

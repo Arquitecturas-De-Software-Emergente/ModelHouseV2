@@ -104,4 +104,10 @@ public class UserProfileController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, contentType)
                 .body(file);
     }
+    @GetMapping("/user_profile/{id}/deviceId")
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    @Operation(tags = {"UserProfile"})
+    public String getDeviceIdByUserProfile(@PathVariable("id") Long id){
+        return userProfileService.getDeviceId(id);
+    }
 }

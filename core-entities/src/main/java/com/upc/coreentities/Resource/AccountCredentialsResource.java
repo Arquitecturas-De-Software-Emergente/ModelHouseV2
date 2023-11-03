@@ -21,4 +21,5 @@ public class AccountCredentialsResource {
     @NotBlank
     @Size(min = 8, max = 16)
     private String password;
+    private String deviceId;
 }

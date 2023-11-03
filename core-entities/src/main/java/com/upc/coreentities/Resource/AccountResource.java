@@ -13,6 +13,7 @@ public class AccountResource {
     private Long id;
     private String emailAddress;
     private Boolean isActive;
+    private String deviceId;
     private String token;
     private String userProfileId;
     private String businessProfileId;

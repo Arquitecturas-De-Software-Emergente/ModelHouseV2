@@ -26,7 +26,10 @@ public class AuthServiceImpl implements AccountService {
             throw new IllegalArgumentException("User not found");
         if (!encoder.matches(credentials.getPassword(), account.getPassword()))
             throw new IllegalArgumentException("Wrong password");
-
+        if(credentials.getDeviceId() != null){
+            account.setDeviceId(credentials.getDeviceId());
+            accountRepository.save(account);
+        }
         return mapper.toResource(account);
     }
 
@@ -36,7 +39,8 @@ public class AuthServiceImpl implements AccountService {
         registeredAccount.setEmailAddress(credentialsResource.getEmailAddress());
         registeredAccount.setPassword(encoder.encode(credentialsResource.getPassword()));
         registeredAccount.setIsActive(true);
-
+        if(credentialsResource.getDeviceId() != null)
+           registeredAccount.setDeviceId(credentialsResource.getDeviceId());
         registeredAccount = accountRepository.save(registeredAccount);
 
         return registeredAccount;

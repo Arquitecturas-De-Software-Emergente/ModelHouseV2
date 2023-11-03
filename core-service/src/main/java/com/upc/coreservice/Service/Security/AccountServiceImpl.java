@@ -38,37 +38,4 @@ public class AccountServiceImpl implements UserDetailsService {
         Account account = accountRepository.findByEmailAddress(email);
         return AccountDetailsImpl.build(account);
     }
-
-    /*
-    private final UserRepository userRepository;
-    private final AccountRepository accountRepository;
-    private final Validator validator;
-    private static final String ENTITY = "Account";
-
-    @Override
-    public Account findById(Long id) {
-        return accountRepository.findAccountById(id);
-    }
-
-    @Override
-    public Account findByUserId(Long userId) {
-
-        return accountRepository.findAccountByUserId(userId);
-    }
-
-    @Override
-    public Account create(Long userId, Account account) {
-        Set<ConstraintViolation<Account>> violations = validator.validate(account);
-        if(!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
-        Account accountExist = accountRepository.findAccountByUserId(userId);
-        if(accountExist != null)
-            throw new ResourceNotFoundException("Account is exist");
-        return userRepository.findById(userId).map(user -> {
-            account.setUser(user);
-            return accountRepository.save(account);
-        }).orElseThrow(() -> new ResourceNotFoundException("User", userId));
-    }
-
-     */
 }
