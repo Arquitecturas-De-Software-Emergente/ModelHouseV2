@@ -1,5 +1,6 @@
 package com.upc.coreservice.Service.Security;
 
+import com.upc.coreentities.Resource.Favorite.CreateFavoriteDto;
 import com.upc.coreentities.Security.BusinessProfile;
 import com.upc.coreentities.Security.Favorite;
 import com.upc.coreentities.Security.UserProfile;
@@ -54,6 +55,30 @@ public class FavoriteServiceImpl implements FavoriteService {
         favoriteRepository.save(favorite);
 
         return favorite;
+    }
+
+    @Override
+    public Favorite updateFavorite(CreateFavoriteDto createFavoriteDto) {
+        UserProfile userProfile = userProfileRepository.findById(createFavoriteDto.getUserProfileId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        BusinessProfile businessProfile = businessProfileRepository.findById(createFavoriteDto.getBusinessProfileId())
+                .orElseThrow(() -> new EntityNotFoundException("Business not found"));
+        try{
+            Favorite favorite = favoriteRepository.findByUserProfileIdAndBusinessProfileId(createFavoriteDto.getUserProfileId(), createFavoriteDto.getBusinessProfileId());
+            if (favorite == null) {
+                favorite.setActive(true);
+                favorite.setUserProfile(userProfile);
+                favorite.setBusinessProfile(businessProfile);
+                //System.out.println(favorite.getActive());
+                favoriteRepository.save(favorite);
+            }else{
+                favorite.setActive(!favorite.getActive());
+                favoriteRepository.save(favorite);
+            }
+            return favorite;
+        }catch (Exception e){
+            throw new FavoriteAlreadyExistsException("Error in the service");
+        }
     }
 
     @Override
