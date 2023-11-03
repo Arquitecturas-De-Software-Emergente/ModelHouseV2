@@ -41,9 +41,8 @@ public class ReviewServiceImpl implements ReviewService {
         Project project = projectRepository.findProjectById(projectId);
         if (project == null)
             throw new ResourceNotFoundException("Project", projectId);
+        System.out.println(project);
         review.setProject(project);
-        project.setReviewScore(review.getScore());
-        project.setReviewComment(review.getComment());
         review.setReviewDate(new Date());
         return reviewRepository.save(review);
     }

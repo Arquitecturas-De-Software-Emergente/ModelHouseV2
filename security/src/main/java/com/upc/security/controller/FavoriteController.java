@@ -42,6 +42,12 @@ public class FavoriteController {
                                       @RequestBody CreateFavoriteDto favoriteDto){
         return mapper.toResource(favoriteService.addFavorite(userId, businessId, mapper.toModel(favoriteDto)));
     }
+    @PutMapping("favorite")
+    @Operation(tags = {"Favorite"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public FavoriteDto createFavorite(@RequestBody CreateFavoriteDto favoriteDto){
+        return mapper.toResource(favoriteService.updateFavorite(favoriteDto));
+    }
 
     @DeleteMapping("/favorite/{id}")
     @Operation(tags = {"Favorite"})

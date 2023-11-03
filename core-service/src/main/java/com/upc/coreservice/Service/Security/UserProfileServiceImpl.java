@@ -66,4 +66,17 @@ public class UserProfileServiceImpl implements UserProfileService {
                                 .withLastLogin(new Date())))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
+
+    @Override
+    public String getDeviceId(Long useProfileId) {
+        System.out.println("Algo mas");
+        try {
+            System.out.println("Algo mas 2");
+            UserProfile userProfile = userProfileRepository.getById(useProfileId);
+            System.out.println("Algo mas 3");
+            return userProfileRepository.getDeviceIdByUserProfile(userProfile.getAccount().getId());
+        }catch (Exception e){
+            throw new ResourceValidationException("Error in the service get device id", e);
+        }
+    }
 }

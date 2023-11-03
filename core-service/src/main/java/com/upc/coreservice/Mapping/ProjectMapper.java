@@ -35,4 +35,8 @@ public class ProjectMapper implements Serializable {
     public Project toModel(UpdateProjectDto resource) {
         return mapper.map(resource, Project.class);
     }
+
+    public ProjectDto toModel(Project resource) {
+        return mapper.map(resource, ProjectDto.class);
+    }
 }

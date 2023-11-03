@@ -11,4 +11,5 @@ public interface BusinessProfileService {
     BusinessProfile findById(Long id);
     BusinessProfile create(Long userId, BusinessProfile businessProfile);
     BusinessProfile update(Long id, BusinessProfile businessProfile);
+    String getDeviceId(Long businessProfileId);
 }

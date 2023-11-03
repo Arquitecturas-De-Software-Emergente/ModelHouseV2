@@ -20,8 +20,8 @@ public class ProjectDto {
     private String description;
     private String image;
     private Long businessProfileId;
+    private String status;
     private List<ProjectActivity> projectActivities;
     private List<ProjectResource> projectResources;
-
     private ProposalDto proposal;
 }

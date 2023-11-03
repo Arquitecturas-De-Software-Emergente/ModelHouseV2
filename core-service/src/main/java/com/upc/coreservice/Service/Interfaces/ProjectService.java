@@ -20,4 +20,5 @@ public interface ProjectService {
     ResponseEntity<?> deleteProject(Long id);
 
     Project update(Long id, Project project);
+    Project changeStatus(Long id, String status);
 }

@@ -61,7 +61,11 @@ public class ProjectController {
     public UpdateProjectDto update(@PathVariable("id") Long id, @RequestBody UpdateProjectDto projectDto){
         return this.projectService.updateProject(id, projectDto);
     }
-
+    @PutMapping("/project/{id}/status/{status}")
+    @Operation(tags = {"Project"})
+    public ProjectDto updateStatus(@PathVariable("id") Long id, @PathVariable("status") String status){
+        return mapper.toModel(this.projectService.changeStatus(id, status));
+    }
     @DeleteMapping("/project/{id}")
     @Operation(tags = {"Project"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
@@ -98,4 +102,5 @@ public class ProjectController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, contentType)
                 .body(file);
     }
+
 }

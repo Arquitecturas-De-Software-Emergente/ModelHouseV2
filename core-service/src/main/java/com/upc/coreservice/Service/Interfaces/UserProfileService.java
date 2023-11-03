@@ -9,5 +9,5 @@ public interface UserProfileService {
     UserProfile findByUserId(Long accountId);
     UserProfile create(Long accountId, UserProfile userProfile);
     UserProfile update(Long id, UserProfile userProfile);
-
+    String getDeviceId(Long userProfileId);
 }

@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class FavoriteDto {
     private Long id;
+    private Boolean active;
     private Long userProfileId;
     private Long businessProfileId;
 

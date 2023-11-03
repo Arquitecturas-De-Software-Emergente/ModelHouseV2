@@ -69,4 +69,13 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
                                 .withWebSite(businessProfile.getWebSite())))
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
+    @Override
+    public String getDeviceId(Long businessProfileId){
+        try {
+            BusinessProfile businessProfile = businessProfileRepository.getById(businessProfileId);
+            return businessProfileRepository.getDeviceIdByBusinessProfile(businessProfile.getAccount().getId());
+        }catch (Exception e){
+            throw new ResourceValidationException("Error in the service get device id", e);
+        }
+    }
 }

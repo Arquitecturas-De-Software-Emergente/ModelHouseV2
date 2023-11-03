@@ -14,7 +14,7 @@ public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private Boolean active;
     @ManyToOne
     @JoinColumn(name = "business_profile_id")
     private BusinessProfile businessProfile;
