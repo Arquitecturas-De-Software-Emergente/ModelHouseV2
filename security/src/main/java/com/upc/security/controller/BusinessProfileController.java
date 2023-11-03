@@ -45,8 +45,8 @@ public class BusinessProfileController {
     }
     @GetMapping("/business_profile")
     @Operation(tags = {"BusinessProfile"})
-    public List<BusinessProfileDto> getAll(){
-        return mapper.listToResource(businessProfileService.findAll());
+    public List<BusinessProfileDto> getAll(@RequestParam(defaultValue = "") String filter){
+        return mapper.listToResource(businessProfileService.findByFilter(filter));
     }
     @GetMapping("/account/{accountId}/business_profile")
     @Operation(tags = {"BusinessProfile"})
@@ -65,13 +65,6 @@ public class BusinessProfileController {
     public BusinessProfileDto createBusinessProfile(@PathVariable("accountId") Long userId,@RequestBody CreateBusinessProfileDto resource){
         return mapper.toResource(businessProfileService.create(userId, mapper.toModel(resource)));
     }
-    @PostMapping("/business_profile/{filter}/filter")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    @Operation(tags = {"BusinessProfile"})
-    public List<BusinessProfileDto> findByFilter(@PathVariable("filter") String filter){
-        return mapper.listToResource(businessProfileService.findByFilter(filter));
-    }
-
     @PostMapping("/business_profile/upload/{id}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     @Operation(tags = {"BusinessProfile"})
