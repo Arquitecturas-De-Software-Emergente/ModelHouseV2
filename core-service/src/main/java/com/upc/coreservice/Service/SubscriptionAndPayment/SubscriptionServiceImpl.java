@@ -67,6 +67,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public Subscription update(Long id, Subscription subscription) {
+
+
+
         return null;
     }
 

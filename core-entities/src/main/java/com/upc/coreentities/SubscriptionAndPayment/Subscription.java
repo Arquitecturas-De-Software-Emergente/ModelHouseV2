@@ -26,6 +26,6 @@ public class Subscription {
     private Plan plan;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 }
