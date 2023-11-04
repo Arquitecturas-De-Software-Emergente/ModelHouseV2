@@ -29,7 +29,7 @@ public class Project {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "proposal_id", nullable = false)
     private Proposal proposal;
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "review_id", nullable = false)
+
+    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL)
     private Review review;
 }

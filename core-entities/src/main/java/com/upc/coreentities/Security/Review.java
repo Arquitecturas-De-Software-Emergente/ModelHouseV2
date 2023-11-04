@@ -1,6 +1,7 @@
 package com.upc.coreentities.Security;
 
 import lombok.*;
+import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,7 +19,12 @@ public class Review {
     private Float score;
     private String comment;
     private Date reviewDate;
+
     @OneToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserProfile userProfile;
 }

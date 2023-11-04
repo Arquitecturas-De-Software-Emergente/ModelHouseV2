@@ -30,12 +30,13 @@ public class ReviewController {
         return mapper.listToResource(reviewService.getAllByProjectId(projectId));
     }
 
-    @PostMapping("/project/{projectId}/review")
+    @PostMapping("/project/{projectId}/user_profile/{userProfileId}/review")
     @Operation(tags = {"Review"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
     public ReviewDto createReview(@PathVariable("projectId") Long projectId,
+                                  @PathVariable("userProfileId") Long userProfileId,
                                   @RequestBody CreateReviewDto reviewDto){
-        return mapper.toResource(reviewService.create(projectId, mapper.toModel(reviewDto)));
+        return mapper.toResource(reviewService.create(projectId, userProfileId, mapper.toModel(reviewDto)));
     }
 
     @DeleteMapping("/review/{id}")

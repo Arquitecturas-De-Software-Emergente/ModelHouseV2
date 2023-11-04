@@ -18,4 +18,5 @@ public class CreateUserProfileDto {
     private String gender;
     private String phoneNumber;
     private String address;
+    private String reviewId;
 }

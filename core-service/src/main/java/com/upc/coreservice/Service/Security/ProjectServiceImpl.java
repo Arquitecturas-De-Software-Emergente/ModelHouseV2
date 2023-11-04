@@ -58,6 +58,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         return businessProfileRepository.findById(businessId).map(businessProfile -> {
             project.setBusinessProfile(businessProfile);
+            project.setStatus("Pendiente");
             project.setProposal(proposal);
             return projectRepository.save(project);
         }).orElseThrow(() -> new ResourceNotFoundException("BusinessProfile", businessId));

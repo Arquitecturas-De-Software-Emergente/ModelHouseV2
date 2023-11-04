@@ -23,5 +23,4 @@ public class BusinessProfileDto {
     private List<CategoryDto> categories;
     private String phoneNumber;
     private String foundationDate;
-    private ReviewDto review;
 }

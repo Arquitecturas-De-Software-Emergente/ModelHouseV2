@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReviewService {
     List<Review> getAllByProjectId(Long projectId);
-    Review create(Long projectId, Review review);
+    Review create(Long projectId, Long businessProfileId, Review review);
     ResponseEntity<?> delete(Long id);
   //  Review update(Long id, Review review);
 }

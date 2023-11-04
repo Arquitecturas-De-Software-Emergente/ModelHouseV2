@@ -24,4 +24,5 @@ public class ProjectDto {
     private List<ProjectActivity> projectActivities;
     private List<ProjectResource> projectResources;
     private ProposalDto proposal;
+    private String reviewId;
 }

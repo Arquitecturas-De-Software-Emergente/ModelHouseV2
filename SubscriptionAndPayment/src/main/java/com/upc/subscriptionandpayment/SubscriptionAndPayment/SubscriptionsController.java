@@ -32,7 +32,9 @@ public class SubscriptionsController {
 
     @PostMapping("/account/{accountId}/plans/{planId}/subscriptions")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public SubscriptionDto createSubscription(Long accountId, Long planId, @RequestBody CreateSubscriptionDto createSubscriptionDto) { return mapper.toResource(subscriptionService.create(accountId, planId, mapper.toModel(createSubscriptionDto))); }
+    public SubscriptionDto createSubscription(Long accountId, Long planId, @RequestBody CreateSubscriptionDto createSubscriptionDto) {
+        return mapper.toResource(subscriptionService.create(accountId, planId, mapper.toModel(createSubscriptionDto)));
+    }
 
     @DeleteMapping("/subscriptions/{subscriptionId}")
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
