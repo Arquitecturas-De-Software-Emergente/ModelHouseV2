@@ -5,6 +5,7 @@ import com.upc.coreentities.Resource.Project.UpdateProjectDto;
 import com.upc.coreentities.Security.Project;
 import com.upc.coreentities.Security.UserProfile;
 import com.upc.coreentities.ServiceManagement.Proposal;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface ProjectService {
 
     Project update(Long id, Project project);
     Project changeStatus(Long id, String status);
+    List<Project> getAllByBusinessProfileId(@Param("id") Long id);
+    List<Project> getAllByUserProfileId(@Param("id") Long id);
 }

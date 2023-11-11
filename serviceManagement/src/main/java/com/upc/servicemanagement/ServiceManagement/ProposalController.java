@@ -35,6 +35,18 @@ public class ProposalController {
         this.projectService = projectService;
         this.mapper = mapper;
     }
+    @GetMapping("/proposal/{id}/business_profile")
+    @Operation(tags = {"Proposal"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public List<ProposalDto> getAllByBusinessProfileId(@PathVariable("id") Long id){
+        return mapper.listToResource(proposalService.getAllByBusinessProfileId(id));
+    }
+    @GetMapping("/proposal/{id}/user_profile")
+    @Operation(tags = {"Proposal"})
+    @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
+    public List<ProposalDto> getAllByUserProfileId(@PathVariable("id") Long id){
+        return mapper.listToResource(proposalService.getAllByUserProfileId(id));
+    }
     @GetMapping("/proposal")
     @Operation(tags = {"Proposal"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")

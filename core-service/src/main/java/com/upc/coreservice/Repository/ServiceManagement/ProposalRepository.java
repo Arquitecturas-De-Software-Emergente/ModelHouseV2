@@ -16,7 +16,15 @@ public interface ProposalRepository extends JpaRepository<Proposal, Long> {
     Proposal findALlByProposalStatus(String status);
     Proposal findByRequestId(Long id);
     List<Proposal> findAll();
-    //@Query(value = "select pr from Proposal pr " +
-    //"where pr.id == ")
-    //Proposal findAllByAccountId(@Param("id") int id);
+    @Query(value = "SELECT pr.* FROM proposal pr " +
+            "INNER JOIN request re ON re.id = pr.request_id " +
+            "INNER JOIN business_profile bp ON bp.id = re.business_profile_id " +
+            "WHERE bp.id = :id", nativeQuery = true)
+    List<Proposal> getAllByBusinessProfileId(@Param("id") Long id);
+
+    @Query(value = "SELECT pr.* FROM proposal pr " +
+            "INNER JOIN request re ON re.id = pr.request_id " +
+            "INNER JOIN user_profile up ON up.id = re.user_profile_id " +
+            "WHERE up.id = :id", nativeQuery = true)
+    List<Proposal> getAllByUserProfileId(@Param("id") Long id);
 }

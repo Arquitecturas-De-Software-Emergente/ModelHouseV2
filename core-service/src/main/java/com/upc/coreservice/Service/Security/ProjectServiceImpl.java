@@ -126,4 +126,14 @@ public class ProjectServiceImpl implements ProjectService {
             throw new ResourceNotFoundException("Ocurrió un error al actualizar", id);
         }
     }
+
+    @Override
+    public List<Project> getAllByBusinessProfileId(Long id) {
+        return projectRepository.getAllByBusinessProfileId(id);
+    }
+
+    @Override
+    public List<Project> getAllByUserProfileId(Long id) {
+        return projectRepository.getAllByUserProfileId(id);
+    }
 }

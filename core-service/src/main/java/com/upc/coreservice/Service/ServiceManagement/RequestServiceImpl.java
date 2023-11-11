@@ -97,6 +97,7 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public Request changeStatus(Long id, Request request) {
+        System.out.println("Entro 0");
         Set<ConstraintViolation<Request>> violations = validator.validate(request);
         if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
@@ -107,6 +108,7 @@ public class RequestServiceImpl implements RequestService {
             String originalStatus = change.getRequestStatus();
 
             if ("Aprobado".equals(newStatus) && !"Aprobado".equals(originalStatus)) {
+                System.out.println("Entro");
                 Proposal proposal = new Proposal();
                 proposal.setTitle(change.getTitle());
                 proposal.setDescription(change.getDescription());

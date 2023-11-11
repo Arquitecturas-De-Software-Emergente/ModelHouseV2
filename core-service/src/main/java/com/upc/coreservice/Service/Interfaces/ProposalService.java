@@ -13,4 +13,6 @@ public interface ProposalService {
     ResponseEntity<?> delete(Long id);
     Proposal update(Long id, Proposal request);
     Proposal changeStatus(Long id, Proposal proposal);
+    List<Proposal> getAllByBusinessProfileId(Long id);
+    List<Proposal> getAllByUserProfileId(Long id);
 }

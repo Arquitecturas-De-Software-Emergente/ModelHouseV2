@@ -40,7 +40,15 @@ public class ProjectController {
         this.request = request;
         this.storageService.init("/Project");
     }
-
+    @GetMapping("/project/{id}/business_profile")
+    @Operation(tags = {"Project"})
+    public List<ProjectDto> getAllByBusinessProfileId(@PathVariable("id") Long id){
+        return mapper.listToResource(projectService.getAllByBusinessProfileId(id));
+    }@GetMapping("/project/{id}/user_profile")
+    @Operation(tags = {"Project"})
+    public List<ProjectDto> getAllByUserProfileId(@PathVariable("id") Long id){
+        return mapper.listToResource(projectService.getAllByUserProfileId(id));
+    }
     @GetMapping("/project")
     @Operation(tags = {"Project"})
     public List<ProjectDto> getAll(){

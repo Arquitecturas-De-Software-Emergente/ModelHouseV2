@@ -105,4 +105,14 @@ return proposalRepository.findById(id).map(proposal -> {
             return proposalRepository.save(change);
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }
+
+    @Override
+    public List<Proposal> getAllByBusinessProfileId(Long id) {
+        return proposalRepository.getAllByBusinessProfileId(id);
+    }
+
+    @Override
+    public List<Proposal> getAllByUserProfileId(Long id) {
+        return proposalRepository.getAllByUserProfileId(id);
+    }
 }
