@@ -1,5 +1,6 @@
 package com.upc.coreservice.Service;
 
+import com.upc.coreservice.Repository.ServiceManagement.ProposalRepository;
 import com.upc.coreservice.Service.Interfaces.StorageService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -7,7 +8,6 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -22,20 +22,21 @@ public class StorageServiceImpl implements StorageService {
     @Value("${media.location}")
     private String mediaLocation;
     private Path rootLocation;
-
     public void init(String rootName) throws IOException {
-        rootLocation = Paths.get(mediaLocation + rootName);
+        this.rootLocation = Paths.get(mediaLocation + rootName);
+        System.out.println(rootLocation);
         Files.createDirectories(rootLocation);
     }
 
     @Override
-    public String store(MultipartFile file) {
+    public String store(MultipartFile file, String rootName) {
+        this.rootLocation = Paths.get(mediaLocation + rootName);
         try {
             if(file.isEmpty()){
                 throw new RuntimeException("Failed to store empty file.");
             }
             String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-            System.out.println(filename);
+            System.out.println(rootLocation);
             Path destinationFile = rootLocation.resolve(Paths.get(filename)).normalize().toAbsolutePath();
             System.out.println(destinationFile);
             try(InputStream inputStream = file.getInputStream()){

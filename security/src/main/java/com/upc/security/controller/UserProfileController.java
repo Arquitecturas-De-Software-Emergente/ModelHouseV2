@@ -83,7 +83,7 @@ public class UserProfileController {
         if(userProfile == null){
             throw new RuntimeException("User Profile is null");
         }
-        String path = storageService.store(multipartFile);
+        String path = storageService.store(multipartFile, "/UserProfile");
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)

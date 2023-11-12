@@ -7,6 +7,6 @@ import java.io.IOException;
 
 public interface StorageService {
     void init(String rootName) throws IOException;
-    String store(MultipartFile file);
+    String store(MultipartFile file, String rootName);
     Resource loadAsResource(String fileName);
 }
