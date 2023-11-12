@@ -76,7 +76,7 @@ public class ProjectResourceController {
         if(projectResource == null){
             throw new RuntimeException("Project Activity is null");
         }
-        String path = storageService.store(multipartFile);
+        String path = storageService.store(multipartFile, "/ProjectResource");
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)

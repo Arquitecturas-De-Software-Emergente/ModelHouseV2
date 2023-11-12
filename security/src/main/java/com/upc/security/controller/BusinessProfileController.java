@@ -73,7 +73,7 @@ public class BusinessProfileController {
         if(businessProfile == null){
             throw new RuntimeException("Business Profile is null");
         }
-        String path = storageService.store(multipartFile);
+        String path = storageService.store(multipartFile, "/BusinessProfile");
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)

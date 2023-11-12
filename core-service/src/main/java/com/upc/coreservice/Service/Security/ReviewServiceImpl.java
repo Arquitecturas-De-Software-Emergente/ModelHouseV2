@@ -33,8 +33,8 @@ public class ReviewServiceImpl implements ReviewService {
     private static final String ENTITY = "Review";
 
     @Override
-    public List<Review> getAllByProjectId(Long projectId) {
-        return reviewRepository.findAllByProjectId(projectId);
+    public Review getByProjectId(Long projectId) {
+        return reviewRepository.findByProjectId(projectId);
     }
 
     @Override

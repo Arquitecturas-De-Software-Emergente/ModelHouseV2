@@ -26,8 +26,8 @@ public class ReviewController {
     @GetMapping("/review/{projectId}")
     @Operation(tags = {"Review"})
     @PreAuthorize("hasRole('ADMIN')or hasRole('USER')")
-    public List<ReviewDto> getAllByUserId(@PathVariable("projectId") Long projectId){
-        return mapper.listToResource(reviewService.getAllByProjectId(projectId));
+    public ReviewDto getAllByUserId(@PathVariable("projectId") Long projectId){
+        return mapper.toResource(reviewService.getByProjectId(projectId));
     }
 
     @PostMapping("/project/{projectId}/user_profile/{userProfileId}/review")

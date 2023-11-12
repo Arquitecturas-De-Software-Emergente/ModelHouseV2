@@ -89,7 +89,7 @@ public class ProjectController {
         if(project == null){
             throw new RuntimeException("Project is null");
         }
-        String path = storageService.store(multipartFile);
+        String path = storageService.store(multipartFile, "/Project");
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)

@@ -71,7 +71,7 @@ public class ProjectActivityController {
         if(projectActivity == null){
             throw new RuntimeException("Project Activity is null");
         }
-        String path = storageService.store(multipartFile);
+        String path = storageService.store(multipartFile, "/ProjectActivity");
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
